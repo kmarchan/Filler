@@ -6,7 +6,7 @@
 launched players/champely.filler
 $$$ exec p1 : [players/champely.filler]
 launched players/champely.filler
-$$$ exec p2 : [players/champely.filler]
+$$$ exec p2 : [players/fluffy.filler]
 Plateau 15 17:
     01234567890123456
 000 .................
