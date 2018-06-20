@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/20 10:42:25 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/20 12:27:05 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_strpull(int w,char **ret, char *str, char c)
 	i = 0;
 	while (str[len] && str[len] != c)
 		len++;
-
 	ret[w] = (char*)malloc(len + 1);
 	while (i <= len)
 	{
