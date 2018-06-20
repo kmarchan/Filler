@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/19 13:50:31 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/20 10:42:25 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,48 @@
 #include <fcntl.h>
 #include "libft.h"
 #include "get_next_line.h"
+#include "filler.h"
 
-char                    **ft_strspliter(char const *s, char c)
+void	ft_strpull(int w,char **ret, char *str, char c)
 {
-        size_t          w;
-        char            **ar;
+	int		i;
+	int 	len;
 
-        if (!s)
-                return (NULL);
-        w = 3; 
-        ar = (char **)ft_memalloc(sizeof(char *) * (w + 1));
-        ft_strarr(s, ar, c, w);
-        if (!ar)
-                return (NULL);
-        return (ar);
+	len = 0;
+	i = 0;
+	while (str[len] && str[len] != c)
+		len++;
+
+	ret[w] = (char*)malloc(len + 1);
+	while (i <= len)
+	{
+		ret[w][i] = *str;
+		i++;
+		str++;
+	}
+	ret[w][i] = '\0';
+}
+
+char	**ft_strspliter(char *str, char c)
+{
+	int		words;
+	char	**ret;
+	int 	i;
+
+	words = 3;
+	ret = (char**)malloc(sizeof(*ret) * words + 1);
+	i = 0;
+	while (i <= words)
+	{
+		while (*str == c && *str != '\0')
+			str++;
+		ft_strpull(i, ret, str, c);
+		while (*str != c && *str != '\0')
+			str++;
+		i++;
+	}
+	ret[words] = NULL;
+	return (ret);
 }
 
 int		read_player(int fd)
@@ -38,6 +66,7 @@ int		read_player(int fd)
 	while ((ft_strstr(player, "p1")) == NULL)
 	{
 		ret = (get_next_line(fd, &player));
+//		ft_putstr("2\n");
 	}
 	if (ft_strstr(player, "p1"))
 	{
@@ -52,41 +81,39 @@ int		read_player(int fd)
 		return (-2);
 }
 
-int	mapsize(int fd)
+char **mapsize(int fd, t_fil *node)
 {
 	int		ret;
 	int		n;
-	char	*ptr;
+//	int		col;
+//	int		lin;
+//	char	*ptr;
 	char	**ptr2;
 	char	*plateau;
 	n = 1;
 	ret = 0;
+	ret = (get_next_line(fd, &plateau));
+	if (!node->mcol)
+		node->mcol = (int)ft_memalloc(sizeof(int));
+	if (!node->mlin)
+		node->mlin = (int)ft_memalloc(sizeof(int));
 	while (ft_strstr(plateau, "Plateau") == NULL)
 	{
 		ret = (get_next_line(fd, &plateau));
-//		printf(" read %s\n", plateau);
+//		ft_putchar(" read %s\n", plateau);
 	}
-//	if ((ptr = ft_strstr(plateau, "Plateau")))
-//	{
-//		while (!(ft_isdigit(*ptr)))
-//			ptr++;
-		printf("read %s\n", plateau);
 		ptr2 = ft_strspliter(plateau, ' ');
-	//	while (n < 3)
-	//	{
-			printf("%s", ptr2[1]);
-			printf("%s", ptr2[2]);
-	//		n++;
-	//	}
-//	}
-	return (ret);
+		node->mlin = (ft_atoi(ptr2[1]));
+		node->mcol = (ft_atoi(ptr2[2]));
+		printf("col %d, lin %d\n", node->mcol, node->mlin);
+	return (ptr2);
 }
 
-//void	map()
-//{
-//
-//}
-//
+void	map()
+{
+	
+}
+
 //void	piecesize()
 //{
 //
@@ -99,10 +126,13 @@ int	mapsize(int fd)
 
 int		main()
 {
+	static	t_fil	*node;
 	int fd;
 
+	if (!node)
+		node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	fd = open("file.txt", O_RDONLY);
-//	printf("out %d", read_player(fd));
-	mapsize(fd);
+//	ft_putnbr(read_player(fd));
+	mapsize(fd, node);
 	return (0);
 }
