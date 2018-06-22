@@ -16,10 +16,12 @@
 
 typedef struct	s_filler
 {
+	int		fd;
 	int		mcol;
 	int		mlin;
 	int		pcol;
 	int		plin;
+	char		**mp;
 }			t_fil;
 
 #endif
