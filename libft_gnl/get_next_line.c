@@ -6,11 +6,13 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 07:45:48 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/13 07:31:56 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/23 13:34:26 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+//remove
+#include <stdio.h>
 
 int			read_line(int fd, char *buf, t_ins *node)
 {
@@ -18,13 +20,10 @@ int			read_line(int fd, char *buf, t_ins *node)
 	int				count;
 
 	count = 0;
-	if (node->ovr != NULL)
-	{
-		ft_strcat(node->hold, node->ovr);
-		ft_strclr(node->ovr);
-	}
+	ft_strcat(node->hold, node->ovr);
+	ft_strclr(node->ovr);
 	if (ft_chrcount(node->hold, '\n') == 0)
-	{
+	{	
 		while ((in = read(fd, buf, BUFF_SIZE)) > 0)
 		{
 			count++;

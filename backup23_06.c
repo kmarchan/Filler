@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/23 13:33:50 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/23 12:18:32 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_strpull(int w,char **ret, char *str, char c)
 	i = 0;
 	while (str[len] && str[len] != c)
 		len++;
-	ret[w] = (char*)ft_memalloc(len + 1);
+	ret[w] = (char*)malloc(len + 1);
 	while (i <= len)
 	{
 		ret[w][i] = *str;
@@ -65,6 +65,7 @@ int		read_player(t_fil *node)
 	while ((ft_strstr(player, "p1")) == NULL)
 	{
 		ret = (get_next_line(node->fd, &player));
+//		ft_putstr("2\n");
 	}
 	if (ft_strstr(player, "p1"))
 	{
@@ -82,47 +83,69 @@ int		read_player(t_fil *node)
 void **mapsize(t_fil *node)
 {
 	int		ret;
+//	int		n;
+//	int		col;
+//	int		lin;
+//	char	*ptr;
 	char	**ptr2;
 	char	*plateau;
+//	n = 1;
 	ret = 0;
 	ret = (get_next_line(node->fd, &plateau));
+//	if (!node->mcol)
+//		node->mcol = (int)ft_memalloc(sizeof(int));
+//	if (!node->mlin)
+//		node->mlin = (int)ft_memalloc(sizeof(int));
 	while (ft_strstr(plateau, "Plateau") == NULL && ret != 0)
 	{
 		ret = (get_next_line(node->fd, &plateau));
+	//	ft_putstr(plateau);
 	}
 	ptr2 = ft_strspliter(plateau, ' ');
 	node->mlin = (ft_atoi(ptr2[1]));
 	node->mcol = (ft_atoi(ptr2[2]));
 		printf("col %d, lin %d\n", node->mcol, node->mlin);
+//	return (ptr2);
 	return (0);
 }
-
 
 void	map(t_fil *node)
 {
 	int ret;
 	int line;
 	char *read;
+	char *temp;
 
+	line = 0;
+//	ft_putendl("a");
 	if (!node->mp)
 	{
-		node->mp = (char **) ft_memalloc(sizeof(char *) * node->mlin);
+//		ft_putendl("c");
+		node->mp = (char **) malloc(sizeof(char *) * node->mlin);
 		mapsize(node);
 	}
 	if (!node->mp)
 		return ;
+//	ft_putendl("d");
 	ret = get_next_line(node->fd, &read);
-	line = 0;
-	while (line < node->mlin)
+	while (line < node->mlin)// || ret != 0)
 	{
+//		ft_putendl("e");
 		node->mp[line] = (char *)ft_memalloc(sizeof(char *) * node->mcol);
 		ret = get_next_line(node->fd, &read);
-		
-		ft_memcpy((char *)node->mp[line], ft_strchr(read, ' ') + 1, node->mcol);
+//		ft_putendl("f");
+//		char *strrrr = ft_strchr(read, ' ');
+//		node->mp[line] = ft_strdup(strrrr);
+//		node->mp[line] = ft_strdup(ft_strchr(read, ' ') + 1);
+//		ft_putendl("Hi");
+		temp = ft_strdup(read);
+//		node->mp[line] = ft_strsub(temp, 4, node->mcol + 1 );
+		ft_memcpy((char *)node->mp[line], ft_strchr(temp, ' ') + 1, node->mcol);
 		ft_putendl(node->mp[line]);
 //		ft_putendl(read);
+//		ft_putendl("e2");
+//		ft_strclr(temp);
 		line++;
-		ft_strdel(&read);
 	}
 }
 
