@@ -133,8 +133,8 @@ void	map(t_fil *node)
 //		node->mp[line] = (char *)ft_memalloc(sizeof(char *) * node->mcol);
 		ret = get_next_line(node->fd, &read);
 		ft_putendl("f");
-		char *strrrr = ft_strchr(read, ' ');
-		node->mp[line] = ft_strdup(strrrr);
+//		char *strrrr = ft_strchr(read, ' ');
+//		node->mp[line] = ft_strdup(strrrr);
 //		node->mp[line] = ft_strdup(ft_strchr(read, ' ') + 1);
 //		ft_putendl("Hi");
 //		ft_memcpy((char *)node->mp[line], (char *)read + 4, node->mcol);
