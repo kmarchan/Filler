@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/23 13:33:50 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:25:05 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		main()
 
 	if (!node)
 		node = (t_fil*)ft_memalloc(sizeof(t_fil));
-	node->fd = open("file.txt", O_RDONLY);
+	node->fd = open("txt.txt", O_RDONLY);
 //	ft_putnbr(read_player(fd));
 	//mapsize(node);
 	map(node);
