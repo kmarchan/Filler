@@ -13,6 +13,7 @@
 #ifndef FILLER_H
 # define FILLER_H
 # include "libft.h"
+# include "get_next_line.h"
 
 typedef struct	s_filler
 {
@@ -22,6 +23,14 @@ typedef struct	s_filler
 	int		pcol;
 	int		plin;
 	char		**mp;
+	char		**pp;
 }			t_fil;
 
+int             read_player(t_fil *node);
+void	**mapsize(t_fil *node);
+void    map(t_fil *node);
+void    **piecesize(t_fil *node);
+void    piece(t_fil *node);
+void    ft_arrpop(int w,char **ret, char *str, char c);
+char    **ft_strspliter(char *str, char c);
 #endif

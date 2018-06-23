@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_info.c                                         :+:      :+:    :+:   */
+/*   get_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,7 +17,7 @@
 #include "get_next_line.h"
 #include "filler.h"
 
-void	ft_strpull(int w,char **ret, char *str, char c)
+void	ft_arrpop(int w,char **ret, char *str, char c)
 {
 	int		i;
 	int 	len;
@@ -49,7 +49,7 @@ char	**ft_strspliter(char *str, char c)
 	{
 		while (*str == c && *str != '\0')
 			str++;
-		ft_strpull(i, ret, str, c);
+		ft_arrpop(i, ret, str, c);
 		while (*str != c && *str != '\0')
 			str++;
 		i++;
@@ -81,53 +81,6 @@ int		read_player(t_fil *node)
 		return (-2);
 }
 
-void **mapsize(t_fil *node)
-{
-	int		ret;
-	char	**ptr2;
-	char	*plateau;
-	ret = 0;
-	ret = (get_next_line(node->fd, &plateau));
-	while (ft_strstr(plateau, "Plateau") == NULL && ret != 0)
-	{
-		ret = (get_next_line(node->fd, &plateau));
-	}
-	ptr2 = ft_strspliter(plateau, ' ');
-	node->mlin = (ft_atoi(ptr2[1]));
-	node->mcol = (ft_atoi(ptr2[2]));
-		printf("col %d, lin %d\n", node->mcol, node->mlin);
-	return (0);
-}
-
-
-void	map(t_fil *node)
-{
-	int ret;
-	int line;
-	char *read;
-	(void)ret;
-
-	if (!node->mp)
-	{
-		node->mp = (char **) ft_memalloc(sizeof(char *) * node->mlin);
-		mapsize(node);
-	}
-	if (!node->mp)
-		return ;
-	ret = get_next_line(node->fd, &read);
-	line = 0;
-	while (line < node->mlin)
-	{
-		ret = get_next_line(node->fd, &read);
-		
-		node->mp[line] = (char *)ft_memalloc(sizeof(char *) * node->mcol);
-		ft_memcpy((char *)node->mp[line], ft_strchr(read, ' ') + 1, node->mcol);
-//		ft_putendl(node->mp[line]);
-//		ft_putendl(read);
-		line++;
-		ft_strdel(&read);
-	}
-}
 
 //void	piecesize()
 //{
@@ -141,19 +94,28 @@ void	map(t_fil *node)
 
 int		main()
 {
-	static	t_fil	*node;
+	t_fil	*node;
 	int l = 0;
 
-	if (!node)
-		node = (t_fil*)ft_memalloc(sizeof(t_fil));
+	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->fd = open("file.txt", O_RDONLY);
 	
-	ft_putnbr(read_player(node));
-	//mapsize(node);
-	map(node);
-	while (l < node->mlin)
+//	ft_putnbr(read_player(node));
+//	mapsize(node);
+//	map(node);
+//	while (l < node->mlin)
+//	{
+//		printf("%s\n", node->mp[l]);
+//		l++;
+//	}
+
+	piece(node);
+	printf("plin %d, pcol %d\n", node->plin, node->pcol);
+	l = 0;
+	while (l < node->plin)
 	{
-		printf("%s\n", node->mp[l]);
+		printf("hi");
+		printf("%s\n", node->pp[l]);
 		l++;
 	}
 	return (0);
