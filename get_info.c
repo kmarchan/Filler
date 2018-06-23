@@ -62,6 +62,8 @@ int		read_player(t_fil *node)
 {
 	int		ret;
 	char	*player;
+	
+	ret = (get_next_line(node->fd, &player));
 	while ((ft_strstr(player, "p1")) == NULL)
 	{
 		ret = (get_next_line(node->fd, &player));
@@ -103,6 +105,7 @@ void	map(t_fil *node)
 	int ret;
 	int line;
 	char *read;
+	(void)ret;
 
 	if (!node->mp)
 	{
@@ -115,11 +118,11 @@ void	map(t_fil *node)
 	line = 0;
 	while (line < node->mlin)
 	{
-		node->mp[line] = (char *)ft_memalloc(sizeof(char *) * node->mcol);
 		ret = get_next_line(node->fd, &read);
 		
+		node->mp[line] = (char *)ft_memalloc(sizeof(char *) * node->mcol);
 		ft_memcpy((char *)node->mp[line], ft_strchr(read, ' ') + 1, node->mcol);
-		ft_putendl(node->mp[line]);
+//		ft_putendl(node->mp[line]);
 //		ft_putendl(read);
 		line++;
 		ft_strdel(&read);
@@ -143,13 +146,13 @@ int		main()
 
 	if (!node)
 		node = (t_fil*)ft_memalloc(sizeof(t_fil));
-	node->fd = open("txt.txt", O_RDONLY);
-//	ft_putnbr(read_player(fd));
+	node->fd = open("file.txt", O_RDONLY);
+	
+	ft_putnbr(read_player(node));
 	//mapsize(node);
 	map(node);
-	while (l >= node->mlin)
+	while (l < node->mlin)
 	{
-		ft_putendl("b");
 		printf("%s\n", node->mp[l]);
 		l++;
 	}

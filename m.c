@@ -4,12 +4,12 @@
 
 int main()
 {
-//	int fd;
+	int fd;
 	char *line;
 
-//	fd = open("txt.txt", O_RDONLY);
-	while (get_next_line(0, &line))
+	fd = open("other.txt", O_RDONLY);
+	while (get_next_line(fd, &line))
 		printf("%s\n", line);
-//	close(fd);
+	close(fd);
 	return (0);
 }
