@@ -8,7 +8,7 @@ LIB:
 
 INCLUDES= -I ./libft_gnl/includes
 
-SRC=	get_info.c 
+SRC=	get_info.c get_map.c get_piece.c 
 
 $(NAME): LIB
 	gcc -Wall -Werror -Wextra -c $(SRC) $(INCLUDES)
