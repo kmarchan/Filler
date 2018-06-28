@@ -22,11 +22,13 @@ typedef struct	s_filler
 	int		mlin;
 	int		pcol;
 	int		plin;
+	int		**hm;
 	char		**mp;
 	char		**pp;
 }			t_fil;
 
 int             read_player(t_fil *node);
+void		heatmap(t_fil *node);
 void	**mapsize(t_fil *node);
 void    map(t_fil *node);
 void    **piecesize(t_fil *node);

@@ -114,8 +114,14 @@ int		main()
 	l = 0;
 	while (l < node->plin)
 	{
-		printf("hi");
 		printf("%s\n", node->pp[l]);
+		l++;
+	}
+	l = 0;
+	heatmap(node);
+	while (l < node->plin)
+	{
+		printf("%n\n", node->hm[l]);
 		l++;
 	}
 	return (0);

@@ -46,17 +46,12 @@ void	piece(t_fil *node)
 	if (!node->pp)
 		return ;
 	line = 0;
-	ft_putendl("p");
 	while (line < node->plin)
 	{
-		ft_putendl("R");
 		ret = get_next_line(node->fd, &read);
 		
 		node->pp[line] = ft_strdup(read);
-//		ft_putendl(node->pp[line]);
 		line++;
 		ft_strdel(&read);
 	}
 }
-
-
