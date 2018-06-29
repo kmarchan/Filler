@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 07:45:48 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/23 13:34:26 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/29 09:01:19 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int			remaining(t_ins *node, char *ptr, char **line)
 
 	cont = 0;
 	*line = ft_strdup(node->hold);
+	ft_strclr(node->hold);
 	if (node->hold[0] != '\0')
 		cont = 1;
 	ft_strclr(node->hold);

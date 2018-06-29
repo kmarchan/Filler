@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/23 14:25:05 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/29 08:45:12 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,27 +102,49 @@ int		main()
 	
 //	ft_putnbr(read_player(node));
 //	mapsize(node);
-//	map(node);
+	map(node);
+	
 //	while (l < node->mlin)
 //	{
 //		printf("%s\n", node->mp[l]);
 //		l++;
 //	}
+	int i;
+	while (l <  node->mlin)
+	{
+		i = 0;
+		while (i < node->mcol)
+		{
+			printf("%c", node->mp[l][i]);
+			i++;
+		}
+		printf("\n");
+		l++;
+	}
 
-	piece(node);
+/*	piece(node);
 	printf("plin %d, pcol %d\n", node->plin, node->pcol);
 	l = 0;
+	
 	while (l < node->plin)
 	{
 		printf("%s\n", node->pp[l]);
 		l++;
 	}
 	l = 0;
+	int i = 0;
 	heatmap(node);
-	while (l < node->plin)
+	printf("%d\n", node->mlin);
+	while (l < node->mlin)
 	{
-		printf("%n\n", node->hm[l]);
+		i = 0;
+		while (i < node->mcol)
+		{
+			printf("%d", node->hm[l][i]);
+			i++;
+		}
+		printf("\n");
 		l++;
-	}
+	}*/
 	return (0);
 }
