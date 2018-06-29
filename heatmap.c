@@ -7,6 +7,7 @@ void	heatmap(t_fil *node)
 	int e;
 	int i;
 	int lin;
+	(void)lin;
 	e = 0;
 	lin = node->mlin;
 	printf("heatmap\n");

@@ -38,6 +38,7 @@ void	map(t_fil *node)
 	int line;
 	char **temp;
 	char *read;
+	(void)ret;
 	if (!node->mp)
 	{
 		write(1, "hello,\n", 8);
@@ -50,20 +51,19 @@ void	map(t_fil *node)
 	line = 0;
 	while (line < node->mlin)
 	{
+		node->mp[line] = (char *)ft_memalloc(sizeof(char) * node->mcol);
 		ret = get_next_line(node->fd, &read);
-//		node->mp[line] = (char *)ft_memalloc(sizeof(char) * node->mcol);
 		temp = ft_strspliter(read, ' ');
-		node->mp[line] = ft_strdup(temp[1]);
+		ft_strcat(temp[0], node->mp[line]);
 		ft_strcpy(node->mp[line], temp[1]);
 //		ft_memcpy((char *)node->mp[line], temp[1], node->mcol);
 //		ft_putendl(node->mp[line]);
-	//	ft_putendl(read);
+		ft_putendl(read);
 //		ft_putnbr(ft_strlen(read));
 //		ft_putnbr(ft_strlen(node->mp[line]));
-		ft_putendl(node->mp[line]);
+//		ft_putendl(node->mp[line]);
 		line++;
 		ft_strdel(&read);
-		free(temp);
 	}
 	ft_putchar('\n');
 }
