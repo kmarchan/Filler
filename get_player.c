@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/29 08:45:12 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/06/29 11:19:54 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ int		main()
 		printf("\n");
 		l++;
 	}
-
-/*	piece(node);
+/*
+	piece(node);
 	printf("plin %d, pcol %d\n", node->plin, node->pcol);
 	l = 0;
 	
@@ -132,7 +132,7 @@ int		main()
 		l++;
 	}
 	l = 0;
-	int i = 0;
+	i = 0;
 	heatmap(node);
 	printf("%d\n", node->mlin);
 	while (l < node->mlin)
