@@ -19,7 +19,7 @@ LIB:
 
 INCLUDES= -I ./libft_gnl/includes
 
-SRC=	get_player.c get_map.c get_piece.c 
+SRC=	get_player.c get_map.c get_piece.c heatmap.c 
 
 OBJ= $(SRC:.c=.o)
 

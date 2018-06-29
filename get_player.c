@@ -58,10 +58,11 @@ char	**ft_strspliter(char *str, char c)
 	return (ret);
 }
 
-int		read_player(t_fil *node)
+void		read_player(t_fil *node)
 {
 	int		ret;
 	char	*player;
+	(void)ret;
 	
 	ret = (get_next_line(node->fd, &player));
 	while ((ft_strstr(player, "p1")) == NULL)
@@ -71,14 +72,10 @@ int		read_player(t_fil *node)
 	if (ft_strstr(player, "p1"))
 	{
 		if (ft_strstr(player, "fluffy.filler"))
-			return (1);
+			node->player = 1;
 		else
-			return (2);
+			node->player = 2;
 	}
-	if (ret != 1)
-		return (-1);
-	else 
-		return (-2);
 }
 
 
@@ -100,7 +97,8 @@ int		main()
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->fd = open("file.txt", O_RDONLY);
 	
-//	ft_putnbr(read_player(node));
+	read_player(node);
+	ft_putnbr(node->player);
 //	mapsize(node);
 	map(node);
 	
@@ -121,7 +119,7 @@ int		main()
 		printf("\n");
 		l++;
 	}
-/*
+
 	piece(node);
 	printf("plin %d, pcol %d\n", node->plin, node->pcol);
 	l = 0;
@@ -145,6 +143,6 @@ int		main()
 		}
 		printf("\n");
 		l++;
-	}*/
+	}
 	return (0);
 }

@@ -18,6 +18,7 @@
 typedef struct	s_filler
 {
 	int		fd;
+	int		player;
 	int		mcol;
 	int		mlin;
 	int		pcol;
@@ -27,7 +28,7 @@ typedef struct	s_filler
 	char		**pp;
 }			t_fil;
 
-int             read_player(t_fil *node);
+void            read_player(t_fil *node);
 void		heatmap(t_fil *node);
 void	**mapsize(t_fil *node);
 void    map(t_fil *node);

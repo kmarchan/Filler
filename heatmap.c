@@ -10,7 +10,7 @@ void	heatmap(t_fil *node)
 	(void)lin;
 	e = 0;
 	lin = node->mlin;
-	printf("heatmap\n");
+	printf("heatmap lin:");
 	if (!node->hm)
 	{
 		node->hm = (int **)ft_memalloc(sizeof(int *) * node->mlin);
@@ -22,7 +22,6 @@ void	heatmap(t_fil *node)
 	}
 	e = 0;
 	i = 0;
-	printf("- begin heatmep\n");
 //	printf("mp %s\n", node->mp[0]);
 	while (e < node->mlin)
 	{
