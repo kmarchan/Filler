@@ -24,10 +24,13 @@ typedef struct	s_filler
 	int		pcol;
 	int		plin;
 	int		**hm;
+	char		me;
+	char		them;
 	char		**mp;
 	char		**pp;
 }			t_fil;
 
+void		get_symbol(t_fil *node);
 void            read_player(t_fil *node);
 void		heatmap(t_fil *node);
 void	**mapsize(t_fil *node);

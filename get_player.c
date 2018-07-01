@@ -78,17 +78,6 @@ void		read_player(t_fil *node)
 	}
 }
 
-
-//void	piecesize()
-//{
-//
-//}
-//
-//void	piece()
-//{
-//
-//}
-
 int		main()
 {
 	t_fil	*node;
