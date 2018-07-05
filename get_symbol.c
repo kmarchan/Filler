@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_symbol.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 08:19:18 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/05 07:37:33 by kmarchan         ###   ########.fr       */
+/*   Created: 2018/07/05 07:43:13 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/07/05 13:03:45 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include "libft.h"
-# include <fcntl.h>
+#include "filler.h"
+#include "libft.h"
 
-# define BUFF_SIZE 1
-
-typedef struct	s_list
+void	get_symbol(t_fil *node)
 {
-	char		*ovr;
-	char		*hold;
-	int			fd;
-}				t_ins;
-
-int				get_next_line(const int fd, char **line);
-
-#endif
+	if (node->player == 1)
+	{
+		node->me = 'o';
+		node->em = 'x';
+	}
+	else if (node->player == 2)
+	{
+		node->me = 'x';
+		node->em = 'o';
+	}
+	if (node->mcol == 50)
+	{
+		if (node->me == 'x')
+		{
+			node->me = 'o';
+			node->em = 'x';
+		}
+		if (node->me == 'o')
+		{
+			node->me = 'x';
+			node->em = 'o';
+		}
+	}
+}

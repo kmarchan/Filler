@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 13:46:58 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/24 13:47:35 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/05 13:20:24 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	**piecesize(t_fil *node)
 	int		ret;
 	char	**ptr2;
 	char	*piece;
+
 	ret = 0;
 	ret = (get_next_line(node->fd, &piece));
 	while (ft_strstr(piece, "Piece") == NULL && ret != 0)
@@ -30,17 +31,16 @@ void	**piecesize(t_fil *node)
 	return (0);
 }
 
-
 void	piece(t_fil *node)
 {
-	int ret;
-	int line;
-	char *read;
-	(void)ret;
+	int		ret;
+	int		line;
+	char	*read;
 
+	(void)ret;
 	if (!node->pp)
 	{
-		node->pp = (char **) ft_memalloc(sizeof(char *) * node->plin);
+		node->pp = (char **)ft_memalloc(sizeof(char *) * node->plin);
 		piecesize(node);
 	}
 	if (!node->pp)
@@ -49,7 +49,6 @@ void	piece(t_fil *node)
 	while (line < node->plin)
 	{
 		ret = get_next_line(node->fd, &read);
-		
 		node->pp[line] = ft_strdup(read);
 		line++;
 		ft_strdel(&read);

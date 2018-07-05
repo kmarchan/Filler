@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/29 11:19:54 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/05 13:16:43 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 #include "get_next_line.h"
 #include "filler.h"
 
-void	ft_arrpop(int w,char **ret, char *str, char c)
+void	ft_arrpop(int w, char **ret, char *str, char c)
 {
 	int		i;
-	int 	len;
+	int		len;
 
 	len = 0;
 	i = 0;
@@ -39,8 +39,8 @@ void	ft_arrpop(int w,char **ret, char *str, char c)
 char	**ft_strspliter(char *str, char c)
 {
 	int		words;
+	int		i;
 	char	**ret;
-	int 	i;
 
 	words = 3;
 	ret = (char**)malloc(sizeof(*ret) * words + 1);
@@ -62,8 +62,8 @@ void		read_player(t_fil *node)
 {
 	int		ret;
 	char	*player;
+
 	(void)ret;
-	
 	ret = (get_next_line(node->fd, &player));
 	while ((ft_strstr(player, "p1")) == NULL)
 	{

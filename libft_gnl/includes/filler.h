@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 10:11:16 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/06/20 10:42:28 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/05 13:33:42 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,30 @@
 
 typedef struct	s_filler
 {
-	int		fd;
-	int		player;
-	int		mcol;
-	int		mlin;
-	int		pcol;
-	int		plin;
-	int		**hm;
+	int			fd;
+	int			player;
+	int			mcol;
+	int			mlin;
+	int			pcol;
+	int			plin;
+	int			**hm;
 	char		me;
-	char		them;
+	char		em;
 	char		**mp;
 	char		**pp;
-}			t_fil;
+}				t_fil;
 
-void		get_symbol(t_fil *node);
-void            read_player(t_fil *node);
-void		heatmap(t_fil *node);
-void	**mapsize(t_fil *node);
-void    map(t_fil *node);
-void    **piecesize(t_fil *node);
-void    piece(t_fil *node);
-void    ft_arrpop(int w,char **ret, char *str, char c);
-char    **ft_strspliter(char *str, char c);
+int				start_row(t_fil *node);
+int				start_col(t_fil *node);
+void			divide_map(t_fil *node);
+void			find_empty(t_fil *node);
+void			get_symbol(t_fil *node);
+void			read_player(t_fil *node);
+void			heatmap(t_fil *node);
+void			map(t_fil *node);
+void			piece(t_fil *node);
+void			ft_arrpop(int w, char **ret, char *str, char c);
+void			**mapsize(t_fil *node);
+void			**piecesize(t_fil *node);
+char			**ft_strspliter(char *str, char c);
 #endif
