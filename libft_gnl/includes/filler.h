@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 10:11:16 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/05 13:33:42 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/06 09:53:27 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ typedef struct	s_filler
 	int			pcol;
 	int			plin;
 	int			**hm;
+	int			ret_col;
+	int			ret_lin;
 	char		me;
 	char		em;
 	char		**mp;
 	char		**pp;
 }				t_fil;
-
+int				find_stars(t_fil *node);
 int				start_row(t_fil *node);
 int				start_col(t_fil *node);
 void			divide_map(t_fil *node);
