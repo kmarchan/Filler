@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:29:37 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/06 10:17:36 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/06 13:54:02 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,53 @@ int		find_stars(t_fil *node)
 	return (stars);
 }
 
-//int		set_coordinate(t_fil *node)
-//{
-//
-//}
-
-int		valid(t_fil *node)
+void	set_coordinate(t_fil *node, int lin, int col)
 {
-	int i;
-	int l;
-	int ovr;
-	int stars;
-
-	l = 0;
-	ovr = 0;
-	stars = 0;
-//	set_coordinate(node);
-	
+	node->ret_col = col;
+	node->ret_lin = lin;
 }
 
+int		check_token_point(t_fil *node, int lin, int col)
+{
+	int	count;
+	int tc;
+	int tl;
+
+	count = 0;
+	tc = node->ret_col;
+	tl = node->ret_lin;
+	if (node->pp[lin][col] == '*' && (tl + lin >= 0 && tc + col >= 0) &&
+			(tl = lin < node->mlin && tc + col < node->mcol))
+		count++;
+	return (count);
+}
+
+void    temp_map(t_fil *node)
+{
+    int     line;
+
+    if (!node->tm)
+    {
+        node->tm = (char **)ft_memalloc(sizeof(char *) * node->mlin);
+        mapsize(node);
+    }
+    if (!node->mp)
+        return ;
+    line = 0;
+    while (line < node->mlin)
+    {
+        node->tm[line] = ft_strdup(node->mp[line]);
+        line++;
+    }
+}
+
+/*
+int		place_pos(t_fil *node)
+{
+	int col;
+	int lin;
+
+	lin = 0;
+	col = 0;
+	while (node->
+}*/

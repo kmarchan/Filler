@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 10:11:16 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/06 09:53:27 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/06 13:52:54 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,43 @@
 # include "libft.h"
 # include "get_next_line.h"
 
+/*
+typedef	struct s_pos
+{
+	int			col;
+	int			lin;
+}				t_pos;
+*/
+
 typedef struct	s_filler
 {
 	int			fd;
 	int			player;
+//	t_pos		*map;
 	int			mcol;
 	int			mlin;
+//	t_pos		*piece;
 	int			pcol;
 	int			plin;
-	int			**hm;
+//	t_pos		*ret;
 	int			ret_col;
 	int			ret_lin;
+
 	char		me;
 	char		em;
+	
+	int			**hm;
+	char		**tm;
 	char		**mp;
 	char		**pp;
 }				t_fil;
+
+int				check_token_point(t_fil *node, int lin, int col);
 int				find_stars(t_fil *node);
 int				start_row(t_fil *node);
 int				start_col(t_fil *node);
+int				find_stars(t_fil *node);
+void			temp_map(t_fil *node);
 void			divide_map(t_fil *node);
 void			find_empty(t_fil *node);
 void			get_symbol(t_fil *node);
@@ -41,6 +59,7 @@ void			read_player(t_fil *node);
 void			heatmap(t_fil *node);
 void			map(t_fil *node);
 void			piece(t_fil *node);
+void			set_coordinate(t_fil *node, int lin, int col);
 void			ft_arrpop(int w, char **ret, char *str, char c);
 void			**mapsize(t_fil *node);
 void			**piecesize(t_fil *node);
