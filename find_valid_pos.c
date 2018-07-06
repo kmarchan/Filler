@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:29:37 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/06 09:53:24 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/06 10:17:36 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int		find_stars(t_fil *node)
 	return (stars);
 }
 
+//int		set_coordinate(t_fil *node)
+//{
+//
+//}
+
 int		valid(t_fil *node)
 {
 	int i;
@@ -47,11 +52,7 @@ int		valid(t_fil *node)
 	l = 0;
 	ovr = 0;
 	stars = 0;
-	set_coordinate(node)
+//	set_coordinate(node);
 	
 }
 
-int		set_coordinate(t_fil *node)
-{
-
-}
