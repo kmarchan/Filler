@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 10:11:16 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/06 13:52:54 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/07 15:44:44 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_filler
 {
 	int			fd;
 	int			player;
+	int			score;
 //	t_pos		*map;
 	int			mcol;
 	int			mlin;
@@ -46,6 +47,16 @@ typedef struct	s_filler
 	char		**pp;
 }				t_fil;
 
+int     place_pos(t_fil *node, int col, int lin);
+int		find_valid(t_fil *node);
+int     score(t_fil *node);
+int     valid_pos(t_fil *node);
+int     star_count(t_fil *node, char **ar);
+int     fst_star_lin(t_fil *node);
+int     fst_star_col(t_fil *node);
+void    temp_map(t_fil *node);
+void    set_coordinate(t_fil *node, int lin, int col);
+int     find_stars(t_fil *node);
 int				check_token_point(t_fil *node, int lin, int col);
 int				find_stars(t_fil *node);
 int				start_row(t_fil *node);

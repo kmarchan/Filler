@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/06 14:30:48 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:58:10 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,85 +78,3 @@ void		read_player(t_fil *node)
 	}
 }
 
-int		main()
-{
-	t_fil	*node;
-	int l = 0;
-
-	node = (t_fil*)ft_memalloc(sizeof(t_fil));
-	node->fd = open("file.txt", O_RDONLY);
-	
-	read_player(node);
-	ft_putnbr(node->player);
-//	mapsize(node);
-	map(node);
-	
-//	while (l < node->mlin)
-//	{
-//		printf("%s\n", node->mp[l]);
-//		l++;
-//	}
-	int i;
-//	while (l <  node->mlin)
-//	{
-//		i = 0;
-//		while (i < node->mcol)
-//		{
-//			printf("%c", node->mp[l][i]);
-//			i++;
-//		}
-//		printf("\n");
-//		l++;
-//	}
-
-	piece(node);
-	printf("plin %d, pcol %d\n", node->plin, node->pcol);
-//	l = 0;
-	
-//	while (l < node->plin)
-//	{
-//		printf("%s\n", node->pp[l]);
-//		l++;
-//	}
-	l = 0;
-	i = 0;
-	heatmap(node);
-//	printf("%d\n", node->mlin);
-//	while (l < node->mlin)
-//	{
-//		i = 0;
-//		while (i < node->mcol)
-//		{
-//			printf("%d", node->hm[l][i]);
-//			i++;
-//		}
-//		printf("\n");
-//		l++;
-//	}
-//	while (l <  node->mlin)
-//	{
-//		i = 0;
-//		while (i < node->mcol)
-//		{
-//			printf("%c", node->mp[l][i]);
-//			i++;
-//		}
-//		printf("\n");
-//		l++;
-//	}
-	temp_map(node);
-	l= 0;
-	while (l <  node->mlin)
-	{
-		i = 0;
-		while (i < node->mcol)
-		{
-			printf("%c", node->tm[l][i]);
-			i++;
-		}
-		printf("\n");
-		l++;
-	}
-//	printf(" stars %d\n", find_stars(node));
-	return (0);
-}
