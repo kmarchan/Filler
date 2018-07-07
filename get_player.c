@@ -149,7 +149,6 @@ int		main()
 	while (l <  node->mlin)
 	{
 		i = 0;
-		ft_putstr("T\n");
 		while (i < node->mcol)
 		{
 			printf("%c", node->tm[l][i]);

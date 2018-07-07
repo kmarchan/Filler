@@ -65,7 +65,6 @@ void    temp_map(t_fil *node)
     if (!node->tm)
     {
         node->tm = (char **)ft_memalloc(sizeof(char *) * node->mlin);
-        mapsize(node);
     }
     if (!node->mp)
         return ;
@@ -77,13 +76,21 @@ void    temp_map(t_fil *node)
     }
 }
 
-/*
+
 int		place_pos(t_fil *node)
 {
 	int col;
 	int lin;
+	int c;
+	int l;
 
 	lin = 0;
 	col = 0;
-	while (node->
-}*/
+	c = 0;
+	l = 0;
+
+	while (lin < node->mlin)
+	{
+		col = 
+	}
+}
