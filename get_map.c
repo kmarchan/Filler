@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 13:47:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/07 14:15:02 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:55:57 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,18 @@ void	map(t_fil *node)
 	if (!node->mp)
 	{
 		node->mp = (char **)ft_memalloc(sizeof(char *) * node->mlin);
-		mapsize(node);
 	}
 	if (!node->mp)
 		return ;
-	ret = get_line(node->fd, &read);
+//	if (node->mlin == 0 || node->mcol == 0)
+//	{
+//		mapsize(node);
+//	}
+//	else 
+//	{
+//		while (ft_strstr(read, "000") == NULL && ret != 0)
+			ret = (get_next_line(node->fd, &read));
+//	}
 	line = 0;
 	while (line < node->mlin)
 	{
@@ -80,5 +87,4 @@ void	map(t_fil *node)
 		line++;
 		ft_strdel(&read);
 	}
-	ft_putchar('\n');
 }

@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 12:58:40 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/05 13:02:57 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:48:37 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int		start_row(t_fil *node)
 		{
 			if (node->mp[e][i] == node->me || node->mp[e][i] == node->me - 32)
 			{
-				printf(" b");
-				printf("e = %d\n", e);
 				return (e);
 			}
 			i++;
