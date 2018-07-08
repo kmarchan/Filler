@@ -80,18 +80,17 @@ int		main()
 	}
   l= 0;
   find_valid(node);
-	valid_pos(node);
-  while (l <  node->mlin)
-  {
-  	i = 0;
-  	while (i < node->mcol)
-  	{
-  		printf("%c", node->tm[l][i]);
-  		i++;
-	}
-		printf("\n");
-		l++;
-	}
+//  while (l <  node->mlin)
+//	 {
+  //		i = 0;
+  //		while (i < node->mcol)
+  //		{
+  //			printf("%c", node->tm[l][i]);
+  //			i++;
+//		}
+//		printf("\n");
+//		l++;
+//	}
 	printf(" stars %d\n", find_stars(node));
 	printf("retl=%d,retc%d\n", node->ret_lin, node->ret_col);
 	return (0);

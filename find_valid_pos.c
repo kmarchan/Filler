@@ -141,7 +141,8 @@ int		star_count(t_fil *node, char **ar)
 		col = 0;
 		while (col < node->mcol)
 		{
-			if(ar[lin][col] == node->me || ar[lin][col] == node->me - 32)
+			if(ar[lin][col] == node->me ||
+			ar[lin][col] == node->me - 32)
 				count++;
 			col++;
 		}
@@ -157,6 +158,7 @@ int		valid_pos(t_fil *node)
 	int count;
 
 	count = 0;
+	printf("testy\n");
 	m = star_count(node, node->mp);
 	count = star_count(node, node->tm);	
 	p = find_stars(node);
@@ -180,7 +182,8 @@ int		score(t_fil *node)
 	{
 		while (col < node->mcol)
 		{
-			if (node->tm[lin][col] == node->me || node->tm[lin][col] == node->me - 32)
+			if (node->tm[lin][col] == node->me ||
+			node->tm[lin][col] == node->me - 32)
 			{
 				score += node->hm[lin][col];
 			}	
@@ -202,18 +205,23 @@ int		place_pos(t_fil *node, int col, int lin)
 {
 	int pc;
 	int pl;
+	int h;
 
-	pl = fst_star_lin(node);
-	pc = fst_star_col(node);
+	pl = 0;//fst_star_lin(node);
+	pc = 0;//fst_star_col(node);
+	h = pc;
+	(void)h;
 	temp_map(node);
-	while (pl <= node->plin)
+//	printf("test 6\n");
+	while (pl < node->plin)
 	{
-		pc = 0;
-		while (pc <= node->pcol)
+		pc = 0; 
+		col = 0;
+		while (pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 			{
-				printf("hello\n");
+				printf("m%d:%d\np%d:%d\n", lin, col, pl, pc);
 				node->tm[lin][col] = node->me;
 			}
 			pc++;
@@ -222,7 +230,19 @@ int		place_pos(t_fil *node, int col, int lin)
 		pl++;
 		lin++;
 	}
-
+	int i = 0;
+	int l = 0;
+	while (l <  node->mlin)
+	{
+ 		i = 0;
+ 		while (i < node->mcol)
+ 		{
+ 		        printf("%c", node->tm[l][i]);
+ 		        i++;
+ 		}
+ 		printf("\n");
+ 		l++;
+	}	
 	return (0);
 }
 
@@ -230,21 +250,25 @@ int		find_valid(t_fil *node)
 {
 	int col;
 	int lin;
-	printf("test 6\n");
 	col = 0;
 	lin = 0;
 	while (lin < node->mlin)
 	{
+		col = 0;
 		while(col < node->mcol)
 		{
+	//		printf("test 3\n");
 			place_pos(node, col, lin);
 			if (valid_pos(node))
+			{
+	//			printf("test 4\n");
 				if(score(node))
 				{
-					printf("test 7\n");
-					set_coordinate(node, lin - node->plin, col - node->pcol); 
+	//				printf("test 5\n");
+					set_coordinate(node, lin, col); 
 					node->score = score(node);
 				}
+			}
 			col++;
 		}
 		lin++;
