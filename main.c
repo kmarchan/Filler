@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 13:56:21 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/08 13:49:16 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:58:55 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -24,6 +24,7 @@ int		main()
 	node->fd = 0; //open("file.txt", O_RDONLY);
 	
 	read_player(node);
+	mapsize(node);
 //	ft_putnbr(node->player);
 	while (1)
 	{
