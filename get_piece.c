@@ -21,14 +21,18 @@ void	**piecesize(t_fil *node)
 
 	ret = 0;
 	ret = (get_next_line(node->fd, &piece));
+	printf("{%s}\n", piece);
 	while (ft_strstr(piece, "Piece") == NULL && ret != 0)
 	{
+	//	printf("piecesize");
 		ret = (get_next_line(node->fd, &piece));
 	}
+	printf("{%s}", piece);
 	ptr2 = ft_strspliter(piece, ' ');
 	node->plin = (ft_atoi(ptr2[1]));
 	node->pcol = (ft_atoi(ptr2[2]));
-	return (0);
+	printf("plin%d, pcol%d\n", node->plin, node->pcol);
+	return(0);
 }
 
 void	piece(t_fil *node)
@@ -38,13 +42,8 @@ void	piece(t_fil *node)
 	char	*read;
 
 	(void)ret;
-	if (!node->pp)
-	{
-		node->pp = (char **)ft_memalloc(sizeof(char *) * node->plin);
-		piecesize(node);
-	}
-	if (!node->pp)
-		return ;
+	node->pp = (char **)ft_memalloc(sizeof(char *) * node->plin);
+	piecesize(node);
 	line = 0;
 	while (line < node->plin)
 	{

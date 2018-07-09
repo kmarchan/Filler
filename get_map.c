@@ -12,6 +12,7 @@
 
 #include "filler.h"
 #include "libft.h"
+#include <stdio.h>
 
 int		get_line(int fd, char **line)
 {
@@ -44,13 +45,16 @@ void	**mapsize(t_fil *node)
 
 	ret = 0;
 	ret = (get_next_line(node->fd, &plateau));
+//	printf("{%s}\n", plateau);
 	while (ft_strstr(plateau, "Plateau") == NULL && ret != 0)
 	{
 		ret = (get_next_line(node->fd, &plateau));
 	}
+//	printf("{%s}", plateau);
 	ptr2 = ft_strspliter(plateau, ' ');
 	node->mlin = (ft_atoi(ptr2[1]));
 	node->mcol = (ft_atoi(ptr2[2]));
+//	printf("mlin%d: mcol%d\n", node->mlin, node->mcol);
 	return (0);
 }
 
@@ -72,10 +76,10 @@ void	map(t_fil *node)
 //	{
 //		mapsize(node);
 //	}
-//	else 
+//	if (node->mlin != 0 || node->mcol != 0)
 //	{
 //		while (ft_strstr(read, "000") == NULL && ret != 0)
-			ret = (get_next_line(node->fd, &read));
+//			ret = (get_next_line(node->fd, &read));
 //	}
 	line = 0;
 	while (line < node->mlin)
@@ -83,8 +87,10 @@ void	map(t_fil *node)
 		node->mp[line] = (char *)ft_memalloc(sizeof(char) * node->mcol);
 		ret = get_line(node->fd, &read);
 		temp = ft_strspliter(read, ' ');
+		printf("%s\n", temp[1]);
 		ft_strcpy(node->mp[line], temp[1]);
 		line++;
 		ft_strdel(&read);
 	}
+//	printf("%c",read[0]);
 }

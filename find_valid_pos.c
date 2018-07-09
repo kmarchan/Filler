@@ -23,6 +23,8 @@ int		find_stars(t_fil *node)
 	stars = 0;
 	i = 0;
 	l =0;
+//	printf("plin %d", node->plin);
+//	printf("find_stars");
 	while (l < node->plin)
 	{
 		i = 0;
@@ -32,10 +34,13 @@ int		find_stars(t_fil *node)
 			{
 				stars++;
 			}
+//			printf("%c", node->pp[l][i]);
 			i++;
 		}
+//		printf("\n");
 		l++;
 	}
+//	printf("stars%d\n", stars); 
 	return (stars);
 }
 
@@ -161,6 +166,7 @@ int		valid_pos(t_fil *node)
 	m = star_count(node, node->mp);
 	count = star_count(node, node->tm);	
 	p = find_stars(node);
+//	printf("map= %d, piece=%d\n", m, p);
 //	printf("count= %d, target=%d\n", count, m + p - 1);
 	if (count == m + p - 1)
 		return (1);
@@ -273,7 +279,7 @@ int		find_valid(t_fil *node)
 			place_pos(node, col, lin);
 			if (valid_pos(node))
 			{
-//				printf("test 4\n");
+				printf("test 4\n");
 				if(score(node))
 				{
 //					printf("test 5\n");
