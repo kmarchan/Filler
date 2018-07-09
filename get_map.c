@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 13:47:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/08 13:55:57 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/09 07:51:57 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,19 @@ void	map(t_fil *node)
 //	if (node->mlin != 0 || node->mcol != 0)
 //	{
 //		while (ft_strstr(read, "000") == NULL && ret != 0)
-//			ret = (get_next_line(node->fd, &read));
+			ret = (get_next_line(node->fd, &read));
 //	}
 	line = 0;
+		ft_putstr_fd(read, 2);
 	while (line < node->mlin)
 	{
 		node->mp[line] = (char *)ft_memalloc(sizeof(char) * node->mcol);
 		ret = get_line(node->fd, &read);
+		//ft_putstr_fd(read, 2);
 		temp = ft_strspliter(read, ' ');
-		printf("%s\n", temp[1]);
 		ft_strcpy(node->mp[line], temp[1]);
 		line++;
 		ft_strdel(&read);
 	}
-//	printf("%c",read[0]);
+	ft_putstr_fd(read, 2);
 }

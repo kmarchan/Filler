@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 13:46:58 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/05 13:20:24 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/09 06:40:21 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	**piecesize(t_fil *node)
 
 	ret = 0;
 	ret = (get_next_line(node->fd, &piece));
-	printf("{%s}\n", piece);
+//	printf("{%s}\n", piece);
 	while (ft_strstr(piece, "Piece") == NULL && ret != 0)
 	{
 	//	printf("piecesize");
 		ret = (get_next_line(node->fd, &piece));
 	}
-	printf("{%s}", piece);
+//	printf("{%s}", piece);
 	ptr2 = ft_strspliter(piece, ' ');
 	node->plin = (ft_atoi(ptr2[1]));
 	node->pcol = (ft_atoi(ptr2[2]));
-	printf("plin%d, pcol%d\n", node->plin, node->pcol);
+//	printf("plin%d, pcol%d\n", node->plin, node->pcol);
 	return(0);
 }
 
