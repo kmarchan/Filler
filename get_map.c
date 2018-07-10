@@ -57,6 +57,53 @@ void	**mapsize(t_fil *node)
 //	printf("mlin%d: mcol%d\n", node->mlin, node->mcol);
 	return (0);
 }
+void	malloc_temp(char **ar, t_fil *node)
+{
+	int line;
+	line = 0;
+	ar = (char **)ft_memalloc(sizeof(char *) * node->mlin);
+//	if (!ar)
+//	{
+//	ft_putstr_fd("MMAP", 2);
+//		return ;
+//	}
+	while (line < node->mlin)
+	{
+		ar[line] = (char *)ft_memalloc(sizeof(char) * node->mcol +1);
+//		ft_strcpy(node->tm[line], node->mp[line]);
+		line++;
+	}
+}
+
+void	bzero_array(char **ar, int n)
+{
+	int line;
+	line = 0;
+	while(line < n)
+	{
+		ft_bzero(ar[line], n);
+		line++;
+	}
+}
+
+void	update_map(t_fil *node)
+{
+	int line;
+	line = 0;
+	int	ret;
+	char	**temp;
+	char *read;
+	(void)ret;
+	(void)temp;
+	while (line < node->mlin)
+	{
+		ret = get_line(node->fd, &read);
+		temp = ft_strspliter(read, ' ');
+		ft_strcpy(node->mp[line], temp[1]);
+		line++;
+		ft_strclr(read);
+	}
+}
 
 void	map(t_fil *node)
 {
@@ -66,32 +113,22 @@ void	map(t_fil *node)
 	char	*read;
 
 	(void)ret;
+	(void)temp;
 	if (!node->mp)
 	{
 		node->mp = (char **)ft_memalloc(sizeof(char *) * node->mlin);
 	}
 	if (!node->mp)
 		return ;
-//	if (node->mlin == 0 || node->mcol == 0)
-//	{
-//		mapsize(node);
-//	}
-//	if (node->mlin != 0 || node->mcol != 0)
-//	{
-//		while (ft_strstr(read, "000") == NULL && ret != 0)
-			ret = (get_next_line(node->fd, &read));
-//	}
+	ret = (get_next_line(node->fd, &read));
 	line = 0;
-		ft_putstr_fd(read, 2);
 	while (line < node->mlin)
 	{
 		node->mp[line] = (char *)ft_memalloc(sizeof(char) * node->mcol);
 		ret = get_line(node->fd, &read);
-		//ft_putstr_fd(read, 2);
 		temp = ft_strspliter(read, ' ');
 		ft_strcpy(node->mp[line], temp[1]);
 		line++;
 		ft_strdel(&read);
 	}
-	ft_putstr_fd(read, 2);
 }

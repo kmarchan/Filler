@@ -64,18 +64,20 @@ void    temp_map(t_fil *node)
 {
     int     line;
 
-    if (!node->tm)
-    {
-        node->tm = (char **)ft_memalloc(sizeof(char *) * node->mlin);
-    }
-    if (!node->mp)
-        return ;
-    line = 0;
-    while (line < node->mlin)
-    {
-        node->tm[line] = ft_strdup(node->mp[line]);
-        line++;
-    }
+//    if (!node->tm)
+  //  {
+//        node->tm = (char **)ft_memalloc(sizeof(char *) * node->mlin);
+//    }
+//   if (!node->mp)
+//        return ;
+	line = 0;
+	ft_putchar_fd('1', 2);
+	while (line < node->mlin)
+	{
+        	ft_strcpy(node->tm[line], node->mp[line]);
+		ft_putchar_fd('2', 2);
+        	line++;
+	}
 }
 
 int		fst_star_lin(t_fil *node)
@@ -250,22 +252,26 @@ int		place_pos(t_fil *node, int col, int lin)
 	pc = 0;//fst_star_col(node);
 	h = col;
 	(void)h;
-	temp_map(node);
+//	temp_map(node);
 //	printf("placelin%d\n", lin);
 //	printf("placecol%d\n", col);
 //	printf("test 6\n");
 	while(s--)
 	{
+		ft_putstr_fd("pos1\n", 2);
 		while (pl < node->plin && lin < node->mlin - (node->plin - pl))
 		{
+			ft_putstr_fd("pos2\n", 2);
 			pc = 0; 
 			col = h;
 			while (pc < node->pcol && col < node->mcol - (node->pcol - pc))
 			{
+				ft_putstr_fd("pos3\n", 2);
 				if (node->pp[pl][pc] == '*')
 				{
 				//	printf("m%d:%d\np%d:%d\n", lin, col, pl, pc);
 					node->tm[lin][col] = node->me;
+					ft_putstr_fd("pos4\n", 2);
 				}
 				pc++;
 				col++;	
@@ -274,19 +280,19 @@ int		place_pos(t_fil *node, int col, int lin)
 			lin++;
 		}
 	}
-int i = 0;
-int l = 0;
-while (l <  node->mlin)
-{
-	i = 0;
-	while (i < node->mcol)
+	int i = 0;
+	int l = 0;
+	while (l <  node->mlin)
 	{
-	        ft_putchar_fd(node->tm[l][i], 2);
-	        i++;
-	}
-	ft_putchar_fd('\n', 2);
-	l++;
-}	
+		i = 0;
+		while (i < node->mcol)
+		{
+		        ft_putchar_fd(node->tm[l][i], 2);
+		        i++;
+		}
+		ft_putchar_fd('\n', 2);
+		l++;
+	}	
 	return (0);
 }
 
@@ -302,12 +308,16 @@ int		find_valid(t_fil *node)
 		while(col < node->mcol)
 		{
 //			printf("findcol%d\n", col);
+			ft_putchar_fd('H', 2);
 			place_pos(node, col, lin);
+			ft_putchar_fd('h', 2);
 			if (valid_pos(node))
 			{
+				ft_putchar_fd('I', 2);
 //				printf("test 4\n");
 				if(score(node))
 				{
+					ft_putchar_fd('J', 2);
 //					printf("test 5\n");
 					set_coordinate(node, lin -1, col); 
 					node->score = score(node);

@@ -1,1 +1,3 @@
-seed = 7302
+seed = 5227
+O: error on input
+./fluffy.filler: Segfault at 0

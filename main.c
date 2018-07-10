@@ -16,6 +16,7 @@ int		main()
 {
 	t_fil	*node;
 	int l = 0;
+	int m = 0;
 	(void)l;
 
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
@@ -25,20 +26,28 @@ int		main()
 	
 	read_player(node);
 	mapsize(node);
+//	malloc_map(node->mp, node);
+  	map(node);
+	if (strstr(node->mp[0], "."))
+		m = 1;
+	malloc_temp(node->tm, node);
 //	printf("mlin%d: mcol%d\n", node->mlin, node->mcol);
 //_putnbr(node->player);
 //t_putchar(node->me);
 //	while (1)
 //	{
-		//ft_putchar_fd('A', 2);
-  		map(node);
-		//ft_putchar_fd('B', 2);
+		if (m == 0)
+		{
+			ft_putchar_fd('A', 2);
+  //			update_map(node);
+		}
+		ft_putchar_fd('B', 2);
 		piece(node);
-		//ft_putchar_fd('C', 2);
+		ft_putchar_fd('C', 2);
 		heatmap(node);
-		//ft_putchar_fd('D', 2);
+		ft_putchar_fd('D', 2);
  		find_valid(node);
-		//ft_putchar_fd('E', 2);
+		ft_putchar_fd('E', 2);
 //		ft_putnbr_fd(node->ret_lin, 2);
 		ft_putnbr(node->ret_lin);
 //		ft_putchar_fd(' ', 2);
@@ -47,9 +56,10 @@ int		main()
 		ft_putnbr(node->ret_col);
 //		ft_putchar_fd('\n', 2);
 		ft_putchar('\n');
-//		free((void**)node->pp);
-//		free((void**)node->hm);
-//		free((void**)node->mp);
+		free(node->pp);
+		free(node->hm);
+		bzero_array(node->mp, node->mlin);
+		bzero_array(node->tm, node->mlin);
 //	}
 	return (0);
 }	
