@@ -95,17 +95,20 @@ void	update_map(t_fil *node)
 	char *read;
 	(void)ret;
 	(void)temp;
+	// ft_putchar_fd('D', 2);
 	// ft_putchar_fd('E', 2);
 
 	ret = get_line(node->fd, &read);
-	while (ft_strstr(read, "000") == NULL && ret != 0)
+	// ft_putendl_fd(read, 2);
+	while (ft_strstr(read, "000") == NULL)
 	{
 		ret = get_line(node->fd, &read);
+
 	}
 	// ft_putstr/d
 	while (line < node->mlin)
 	{
-		ft_putendl_fd(read, 2);
+			// ft_putendl_fd(read, 2);
 		// ft_putchar_fd('D', 2);
 		ret = get_line(node->fd, &read);
 		temp = ft_strspliter(read, ' ');

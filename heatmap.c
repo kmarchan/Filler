@@ -111,11 +111,13 @@ void	heatmap(t_fil *node)
 
 	e = 0;
 	if (!node->hm)
-		node->hm = (int **)ft_memalloc(sizeof(int *) * node->mlin);
-	while (e <= node->mlin)
 	{
-		node->hm[e] = (int *)ft_memalloc(sizeof(int) * node->mcol);
-		e++;
+		node->hm = (int **)ft_memalloc(sizeof(int *) * node->mlin);
+		while (e <= node->mlin)
+		{
+			node->hm[e] = (int *)ft_memalloc(sizeof(int) * node->mcol);
+			e++;
+		}
 	}
 	get_symbol(node);
 	find_empty(node);
