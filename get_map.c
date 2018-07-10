@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 13:47:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/09 07:51:57 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/10 06:45:46 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,29 @@ void	update_map(t_fil *node)
 {
 	int line;
 	line = 0;
+	char **temp;
 	int	ret;
-	char	**temp;
 	char *read;
 	(void)ret;
 	(void)temp;
+	// ft_putchar_fd('E', 2);
+
+	ret = get_line(node->fd, &read);
+	while (ft_strstr(read, "000") == NULL && ret != 0)
+	{
+		ret = get_line(node->fd, &read);
+	}
+	// ft_putstr/d
 	while (line < node->mlin)
 	{
+		ft_putendl_fd(read, 2);
+		// ft_putchar_fd('D', 2);
 		ret = get_line(node->fd, &read);
 		temp = ft_strspliter(read, ' ');
 		ft_strcpy(node->mp[line], temp[1]);
+		
 		line++;
-		ft_strclr(read);
+		// ft_strclr(read);
 	}
 }
 
@@ -120,6 +131,8 @@ void	map(t_fil *node)
 	}
 	if (!node->mp)
 		return ;
+	
+	
 	ret = (get_next_line(node->fd, &read));
 	line = 0;
 	while (line < node->mlin)
@@ -130,5 +143,6 @@ void	map(t_fil *node)
 		ft_strcpy(node->mp[line], temp[1]);
 		line++;
 		ft_strdel(&read);
+		// ft_putchar_fd('E', 2);
 	}
 }

@@ -47,13 +47,16 @@ typedef struct	s_filler
 	char		**pp;
 }				t_fil;
 
+int		get_line(int fd, char **line);
 int     place_pos(t_fil *node, int col, int lin);
 int		find_valid(t_fil *node);
-int     score(t_fil *node);
+int     score(t_fil *node, int lin, int col);
 int     valid_pos(t_fil *node);
 int     star_count(t_fil *node, char **ar);
 int     fst_star_lin(t_fil *node);
 int     fst_star_col(t_fil *node);
+void	update_piece(t_fil *node);
+void	check_map(t_fil *node);
 void	bzero_array(char **ar, int n);
 void	update_map(t_fil *node);
 void	malloc_temp(char **ar, t_fil *node);
