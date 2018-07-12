@@ -69,9 +69,8 @@ void    temp_map(t_fil *node)
 	//	malloc_temp(node->tm, node);
 	//	ft_putchar_fd('2', 2);
    // }
-   if (!node->tm)
-		ft_putstr_fd("tm->MALLOC FAIL", 2);
-	line = 0;
+	if (!node->tm)
+		line = 0;
 	while (line < node->mlin)
 	{
         	ft_strcpy(node->tm[line], node->mp[line]);
@@ -239,7 +238,7 @@ int		score(t_fil *node)
 	else 
 		return (0);
 }
-
+/*
 int		place_pos(t_fil *node, int col, int lin)
 {
 	int pc;
@@ -297,13 +296,14 @@ int		place_pos(t_fil *node, int col, int lin)
 	}	
 	return (0);
 }
-
+*/
 int		find_valid(t_fil *node)
 {
 	int col;
 	int lin;
 	col = 0;
 	lin = 0;
+	node->score = 0;
 	while (lin < node->mlin)
 	{
 		col = 0;
@@ -311,9 +311,9 @@ int		find_valid(t_fil *node)
 		{
 //			printf("findcol%d\n", col);
 			// ft_putchar_fd('H', 2);
-			place_pos(node, col, lin);
+	//		place_pos(node, col, lin);
 			// ft_putchar_fd('h', 2);
-			if (valid_pos(node))
+			if (valid_pos(node) == 1)
 			{
 				// ft_putchar_fd('I', 2);
 //				printf("test 4\n");
@@ -330,5 +330,7 @@ int		find_valid(t_fil *node)
 		}
 		lin++;
 	}
+	if (score == 0)
+		node->valid = 0;
 	return (1);
 }

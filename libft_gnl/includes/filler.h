@@ -25,6 +25,7 @@ typedef	struct s_pos
 
 typedef struct	s_filler
 {
+	int			valid;
 	int			fd;
 	int			player;
 	int			score;
