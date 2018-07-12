@@ -51,7 +51,6 @@ int		main()
 		if (node->valid == 0)
 			break ;
 		placementoutput(node->ret_lin, node->ret_col);
-
 		free(node->pp);
 		node->plin = 0;
 		node->pcol = 0;

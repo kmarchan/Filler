@@ -52,10 +52,10 @@ int check_locat(t_fil *node, int lin, int col)
 	l = 0;
 	ovr = 0;
 	count = 0;
-	while (l < node->plin && lin + node->plin < node->mlin)
+	while (l < node->plin && lin + node->plin <= node->mlin)
 	{
 		c = 0;
-		while (c < node->pcol && col + node->pcol < node->mcol)
+		while (c < node->pcol && col + node->pcol <= node->mcol)
 		{
 			if (node->pp[l][c] == '*')
 			{
@@ -67,8 +67,8 @@ int check_locat(t_fil *node, int lin, int col)
 				if ((node->mp[lin + l][col + c] == node->me ||
 				node->mp[lin +l][col + c] == node->me -32))
 					ovr++;
-				if ((lin + l < node->mlin && lin + l > 0) &&
-				col + c < node->mcol && col + c > 0)
+				if ((lin + l < node->mlin && lin + l >= 0) &&
+				col + c < node->mcol && col + c >= 0)
 					count++;
 			}
 			c++;
@@ -78,18 +78,7 @@ int check_locat(t_fil *node, int lin, int col)
 	//if (count == maxstar && ovr == 1)
 	if (count != maxstar || ovr != 1)
 		return (0);
-	ft_putstr_fd("ovr ", 2);
-	ft_putnbr_fd(ovr, 2);
-	ft_putchar_fd('\n', 2);
-	ft_putstr_fd("lin ", 2);
-	ft_putnbr_fd(lin, 2);
-	ft_putchar_fd(':', 2);
-	ft_putstr_fd("col ", 2);
-	ft_putnbr_fd(col, 2);
-	ft_putchar_fd('\n', 2);
-	ft_putstr_fd("star ", 2);
-	ft_putnbr_fd(maxstar, 2);
-	ft_putchar_fd('\n', 2);
+	ft_putchar_fd(' ', 2);
 	return (1);
 }
 
