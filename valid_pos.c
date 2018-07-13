@@ -78,7 +78,7 @@ int check_locat(t_fil *node, int lin, int col)
 	//if (count == maxstar && ovr == 1)
 	if (count != maxstar || ovr != 1)
 		return (0);
-	ft_putchar_fd(' ', 2);
+	// ft_putchar_fd(' ', 2);
 	return (1);
 }
 
