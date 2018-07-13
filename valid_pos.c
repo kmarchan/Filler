@@ -78,7 +78,7 @@ int check_locat(t_fil *node, int lin, int col)
 	//if (count == maxstar && ovr == 1)
 	if (count != maxstar || ovr != 1)
 		return (0);
-	// ft_putchar_fd(' ', 2);
+	ft_putchar_fd(' ', 2);
 	return (1);
 }
 
@@ -122,6 +122,7 @@ void	check_map(t_fil *node)
 	node->score = 0;
 	lin = 0;
 	score = 0;
+	tscore = 0;
 	x = 0;
 	y = 0;
 	while (lin < node->mlin)
