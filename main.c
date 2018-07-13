@@ -20,7 +20,7 @@ void    placementoutput(int y, int x)
     ret = ft_strjoin(ft_itoa(y), " ");
     ft_strcat(ret, ft_itoa(x));
     ft_putendl_fd(ret, 1);
-    ft_putendl_fd(ret, 2);
+    // ft_putendl_fd(ret, 2);
     free(ret);
 }
 
@@ -30,11 +30,18 @@ void	printmap(t_fil *node)
 	while (lin < node->mlin)
 	{
 		ft_putchar_fd('{', 2);
-		ft_putstr_fd(node->mp[lin], 2);
+		int col = 0;
+		while (col < node->mcol)
+		{
+			ft_putnbr_fd(node->hm[lin][col], 2);
+			ft_putchar_fd(' ', 2);
+			col++;
+		}
 		ft_putchar_fd('}', 2);
 		lin++;
 		ft_putchar_fd('\n', 2);
 	}
+	ft_putchar_fd('\n', 2);
 }
 
 int		main()
@@ -51,32 +58,34 @@ int		main()
 	node->fd = 0;//open("map_o2.txt", O_RDONLY);
 	
 	read_player(node);
+	ft_putnbr_fd(node->player, 2);
 	mapsize(node);
   	map(node);
 	if (strstr(node->mp[0], "."))
 		m = 1;
-printmap(node);
+// printmap(node);
 	piece(node);
 	node->valid = 1;
-	ft_putendl_fd("A", 2);
+	// ft_putendl_fd("A", 2);
 	while (1)
 	{
-		ft_putendl_fd("B", 2);
+		// ft_putendl_fd("B", 2);
 		heatmap(node);
-		ft_putendl_fd("C", 2);
+		// printmap(node);
+		// ft_putendl_fd("C", 2);
 		check_map(node);
-		ft_putendl_fd("D", 2);
+		// ft_putendl_fd("D", 2);
 		// if (node->valid == 0)
 			// break ;
-		ft_putendl_fd("E", 2);
+		// ft_putendl_fd("E", 2);
 		placementoutput(node->ret_lin, node->ret_col);
-		ft_putendl_fd("F", 2);
+		// ft_putendl_fd("F", 2);
 		free(node->pp);
 		node->score = 0;
-		ft_putendl_fd("G", 2);
+		// ft_putendl_fd("G", 2);
 		update_map(node);
-		printmap(node);
-		ft_putendl_fd("H", 2);
+		// printmap(node);
+		// ft_putendl_fd("H", 2);
 		//piecesize(node);
 		piece(node);
 		
