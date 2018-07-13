@@ -106,6 +106,11 @@ int scorecheck(t_fil *node, int lin, int col)
 
 void	set_coordinate(t_fil *node, int lin, int col)
 {
+	ft_putchar_fd('[', 2);
+	ft_putnbr_fd(lin, 2);
+	ft_putchar_fd(' ', 2);
+	ft_putnbr_fd(col, 2);
+	ft_putchar_fd(']', 2);
 	node->ret_col = col;
 	node->ret_lin = lin;
 }
@@ -121,6 +126,7 @@ void	check_map(t_fil *node)
 
 	node->score = 0;
 	lin = 0;
+	tscore =0;
 	score = 0;
 	tscore = 0;
 	x = 0;
@@ -139,6 +145,12 @@ void	check_map(t_fil *node)
 				{
 					y = lin;
 					x = col;
+					ft_putnbr_fd(tscore, 2);
+					ft_putchar_fd('{', 2);
+					ft_putnbr_fd(lin, 2);
+					ft_putchar_fd(' ', 2);
+					ft_putnbr_fd(col, 2);
+					ft_putchar_fd('}', 2);
 					score = tscore;
 				}
 			}
@@ -146,7 +158,7 @@ void	check_map(t_fil *node)
 		}
 		lin++;
 	}
-	if (tscore == 0)
+	if (score == 0)
 		node->valid = 0;
 	set_coordinate(node, y, x);
 }

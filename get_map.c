@@ -23,6 +23,7 @@ int		get_line(int fd, char **line)
 
 	buff = (char*)ft_memalloc(sizeof(char) * 1);
 	ret = (char*)ft_memalloc(sizeof(char) * 200);
+	ft_strclr(ret);
 	while ((byter = read(fd, buff, 1)) > 0)
 	{
 		ft_strcat(ret, buff);
@@ -33,7 +34,9 @@ int		get_line(int fd, char **line)
 	}
 	i = ft_strlen(ret);
 	ret[i - 1] = '\0';
+	// ft_putchar_fd('\n', 2);
 	*line = ft_strdup(ret);
+	// ft_putstr_fd(ret, 2);
 	return (byter);
 }
 
@@ -88,10 +91,10 @@ void	update_map(t_fil *node)
 	(void)ret;
 	(void)temp;
 
-	ret = get_line(node->fd, &read);
+	ret = get_next_line(node->fd, &read);
 	while (ft_strstr(read, "012345") == NULL && ret != 0)
 	{
-		ret = get_line(node->fd, &read);
+		ret = get_next_line(node->fd, &read);
 		// ft_putchar_fd('{', 2);
 		// ft_putnbr_fd(ret, 2);
 		// ft_putchar_fd('}', 2);
@@ -99,7 +102,7 @@ void	update_map(t_fil *node)
 	while (line < node->mlin)
 	{
 
-		ret = get_line(node->fd, &read);
+		ret = get_next_line(node->fd, &read);
 		// ft_putchar_fd('{', 2);
 		// ft_putendl_fd(read, 2);
 		// ft_putchar_fd('}', 2);
@@ -128,12 +131,12 @@ void	map(t_fil *node)
 		return ;
 	
 	
-	ret = (get_line(node->fd, &read));
+	ret = (get_next_line(node->fd, &read));
 	line = 0;
 	while (line < node->mlin)
 	{
 		node->mp[line] = (char *)ft_memalloc(sizeof(char) * node->mcol);
-		ret = get_line(node->fd, &read);
+		ret = get_next_line(node->fd, &read);
 		temp = ft_strspliter(read, ' ');
 		ft_strcpy(node->mp[line], temp[1]);
 		line++;

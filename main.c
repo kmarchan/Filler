@@ -59,15 +59,15 @@ printmap(node);
 	piece(node);
 	node->valid = 1;
 	ft_putendl_fd("A", 2);
-	while (node->valid == 1)
+	while (1)
 	{
 		ft_putendl_fd("B", 2);
 		heatmap(node);
 		ft_putendl_fd("C", 2);
 		check_map(node);
 		ft_putendl_fd("D", 2);
-		if (node->valid == 0)
-			break ;
+		// if (node->valid == 0)
+			// break ;
 		ft_putendl_fd("E", 2);
 		placementoutput(node->ret_lin, node->ret_col);
 		ft_putendl_fd("F", 2);

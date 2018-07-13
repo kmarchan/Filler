@@ -23,11 +23,12 @@ void	**piecesize(t_fil *node)
 	(void)ret;
 	node->plin = 0;
 	node->pcol = 0;
-	ret = (get_line(node->fd, &piece));
-//	ft_putstr_fd(piece, 2);
+	ret = (get_next_line(node->fd, &piece));
+	ft_putstr_fd(piece, 2);
 	while (ft_strstr(piece, "Piece") == NULL && ret != 0)
 	{
-		ret = (get_line(node->fd, &piece));
+		ret = (get_next_line(node->fd, &piece));
+		ft_putendl_fd(piece, 2);
 	}
 	ptr2 = ft_strspliter(piece, ' ');
 	node->plin = (ft_atoi(ptr2[1]));
@@ -66,8 +67,10 @@ void	piece(t_fil *node)
 	line = 0;
 	while (line < node->plin)
 	{
-		ret = get_line(node->fd, &read);
+		ret = get_next_line(node->fd, &read);
 		node->pp[line] = ft_strdup(read);
+		//ft_putchar_fd('\n', 2);
+		ft_putendl_fd(node->pp[line], 2);
 		line++;
 		ft_strdel(&read);
 	}
