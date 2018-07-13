@@ -25,17 +25,4 @@ void	get_symbol(t_fil *node)
 		node->me = 'x';
 		node->em = 'o';
 	}
-	if (node->mcol == 50)
-	{
-		if (node->me == 'x')
-		{
-			node->me = 'o';
-			node->em = 'x';
-		}
-		if (node->me == 'o')
-		{
-			node->me = 'x';
-			node->em = 'o';
-		}
-	}
 }

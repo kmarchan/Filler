@@ -65,9 +65,10 @@ void		read_player(t_fil *node)
 
 	(void)ret;
 	ret = (get_next_line(node->fd, &player));
-	while ((ft_strstr(player, "p1")) == NULL)
+	while ((ft_strstr(player, "exec")) == NULL)
 	{
 		ret = (get_next_line(node->fd, &player));
+		ft_putchar_fd('p', 2);
 	}
 	if (ft_strstr(player, "p1"))
 	{
@@ -75,6 +76,13 @@ void		read_player(t_fil *node)
 			node->player = 1;
 		else
 			node->player = 2;
+	}
+	else if (ft_strstr(player, "p2"))
+	{
+		if (ft_strstr(player, "fluffy.filler"))
+			node->player = 2;
+		else
+			node->player = 1;
 	}
 }
 
