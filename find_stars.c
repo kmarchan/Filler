@@ -50,7 +50,7 @@ int		fst_star_col(t_fil *node)
 		while(pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
-				if (c < pc)
+				if (c > pc)
 				{
 					c = pc;
 				}					
@@ -61,46 +61,59 @@ int		fst_star_col(t_fil *node)
 	return (c);
 }
 
-int		fst_last_lin(t_fil *node)
+int		lst_star_lin(t_fil *node)
 {
 	int pc;
 	int pl;
+	int l;
 
-	pl = node->plin;
-	while (pl--)
+	l = 0;
+	pl = 0;
+	while (pl < node->plin)
 	{
-		pc = node->pcol;
+		pc = 0;
 		while(pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 			{
-				return (pl);
+//				ft_putchar_fd('l', 2);
+//				ft_putnbr_fd(pl, 2);
+//				ft_putchar_fd('\n', 2);
+				if(l < pl)
+					l = pl;
 			}
-			pc--;
+			pc++;
 		}	
+		pl++;
 	}
-	return (node->plin - pl);
+	return (node->plin - l);
 }
 
-int		fst_last_col(t_fil *node)
+int		lst_star_col(t_fil *node)
 {
 	int pc;
 	int pl;
 	int c;
 
-	pl = node->plin;
-	c = node->pcol;
-	while (pl--)
+	pc = 0;
+	pl = 0;
+	c = 0;
+	while (pl < node->plin)
 	{
-		pc = node->pcol;
-		while(pc--)
+		pc = 0;
+		while(pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 				if (c < pc)
 				{
 					c = pc;
 				}					
+			pc++;
 		}	
+		pl++;
 	}
+//	ft_putchar_fd('c', 2);
+//	ft_putnbr_fd(c, 2);
+//	ft_putchar_fd('\n', 2);
 	return (node->pcol - c);
 }

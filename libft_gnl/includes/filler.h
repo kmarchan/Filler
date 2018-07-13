@@ -56,6 +56,8 @@ int     valid_pos(t_fil *node);
 int     star_count(t_fil *node, char **ar);
 int     fst_star_lin(t_fil *node);
 int     fst_star_col(t_fil *node);
+int     lst_star_lin(t_fil *node);
+int     lst_star_col(t_fil *node);
 void	update_piece(t_fil *node);
 void	check_map(t_fil *node);
 void	bzero_array(char **ar, int n);

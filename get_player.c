@@ -68,7 +68,6 @@ void		read_player(t_fil *node)
 	while ((ft_strstr(player, "exec")) == NULL)
 	{
 		ret = (get_next_line(node->fd, &player));
-		ft_putchar_fd('p', 2);
 	}
 	if (ft_strstr(player, "p1"))
 	{

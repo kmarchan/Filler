@@ -47,15 +47,19 @@ int check_locat(t_fil *node, int lin, int col)
 	int count;
 	int ovr;
 	int maxstar;
+	int ovrl;
+	int ovrc;
 
+	ovrl = lst_star_lin(node);
+	ovrc = lst_star_col(node);
 	maxstar = find_stars(node);
 	l = 0;
 	ovr = 0;
 	count = 0;
-	while (l < node->plin && lin + node->plin <= node->mlin)
+	while (l < node->plin && lin + node->plin < node->mlin + ovrl)
 	{
 		c = 0;
-		while (c < node->pcol && col + node->pcol <= node->mcol)
+		while (c < node->pcol && col + node->pcol < node->mcol + ovrc)
 		{
 			if (node->pp[l][c] == '*')
 			{
@@ -124,6 +128,13 @@ void	check_map(t_fil *node)
 	tscore = 0;
 	x = 0;
 	y = 0;
+//	int sl = lst_star_lin(node);
+//	int sc = lst_star_col(node);
+//	ft_putchar_fd('{', 2);
+//	ft_putnbr_fd(sl, 2);
+//	ft_putchar_fd(' ', 2);
+//	ft_putnbr_fd(sc, 2);
+//	ft_putchar_fd('}', 2);
 	while (lin < node->mlin)
 	{
 		col = 0 - fst_star_col(node);
