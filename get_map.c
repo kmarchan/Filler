@@ -89,14 +89,20 @@ void	update_map(t_fil *node)
 	(void)temp;
 
 	ret = get_line(node->fd, &read);
-	while (ft_strstr(read, "012345") == NULL)
+	while (ft_strstr(read, "012345") == NULL && ret != 0)
 	{
 		ret = get_line(node->fd, &read);
-
+		// ft_putchar_fd('{', 2);
+		// ft_putnbr_fd(ret, 2);
+		// ft_putchar_fd('}', 2);
 	}
 	while (line < node->mlin)
 	{
+
 		ret = get_line(node->fd, &read);
+		// ft_putchar_fd('{', 2);
+		// ft_putendl_fd(read, 2);
+		// ft_putchar_fd('}', 2);
 		temp = ft_strspliter(read, ' ');
 		ft_strcpy(node->mp[line], temp[1]);
 		
