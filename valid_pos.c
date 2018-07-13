@@ -118,14 +118,14 @@ void	check_map(t_fil *node)
 	int	score;
 
 	node->score = 0;
-	lin = 0;
+	lin = 0 - fst_star_lin(node);
 	tscore = 0;
 	score = 0;
 	x = 0;
 	y = 0;
 	while (lin < node->mlin)
 	{
-		col = 0;
+		col = 0 - fst_star_col(node);
 		while (col < node->mcol)
 		{
 			if (col >= node->mcol)
