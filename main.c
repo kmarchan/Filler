@@ -71,7 +71,7 @@ int		main()
 	{
 //		 ft_putendl_fd("B", 2);
 		heatmap(node);
-		 printmap(node);
+		 // printmap(node);
 //		 ft_putendl_fd("C", 2);
 		check_map(node);
 //		 ft_putendl_fd("D", 2);

@@ -14,6 +14,50 @@
 #include "libft.h"
 #include <stdio.h>
 
+int		start_emcol(t_fil *node)
+{
+	int e;
+	int i;
+
+	e = 0;
+	while (e < node->mlin)
+	{
+		i = 0;
+		while (node->mp[e][i] != '\0')
+		{
+			if (node->mp[e][i] == node->em || node->mp[e][i] == node->em - 32)
+			{
+				return (i);
+			}
+			i++;
+		}
+		e++;
+	}
+	return (i);
+}
+
+int		start_emlin(t_fil *node)
+{
+	int e;
+	int i;
+
+	e = 0;
+	while (e < node->mlin)
+	{
+		i = 0;
+		while (node->mp[e][i] != '\0')
+		{
+			if (node->mp[e][i] == node->em || node->mp[e][i] == node->em - 32)
+			{
+				return (e);
+			}
+			i++;
+		}
+		e++;
+	}
+	return (e);
+}
+
 int		start_col(t_fil *node)
 {
 	int e;
@@ -128,7 +172,7 @@ void	heat_back(t_fil *node, int lin, int col)
 	c = 1;
 	while(v > 1 && col - c > 0)
 	{
-		if (node->mp[lin][col-c] == '.')//(node->mp[lin][col-c] != node->me || node->mp[lin][col-c] != node->me - 32 || node->mp[lin][col-c] != node->em || node->mp[lin][col-c] != node->em -32)
+		if (node->mp[lin][col-c] == '.' && node->hm[lin][col-c] < v)//(node->mp[lin][col-c] != node->me || node->mp[lin][col-c] != node->me - 32 || node->mp[lin][col-c] != node->em || node->mp[lin][col-c] != node->em -32)
 		{
 			node->hm[lin][col-c] = v;	
 		}
@@ -145,7 +189,7 @@ void	heat_forward(t_fil *node, int lin, int col)
 	c = 1;
 	while(v > 1 && col + c < node->mcol)
 	{
-		if (node->mp[lin][col + c] == '.')//(node->mp[lin][col + c] != node->me || node->mp[lin][col+c] != node->me - 32 || node->mp[lin][col+c] != node->em || node->mp[lin][col+c] != node->em -32)
+		if (node->mp[lin][col + c] == '.' && node->hm[lin][col+c] < v)//(node->mp[lin][col + c] != node->me || node->mp[lin][col+c] != node->me - 32 || node->mp[lin][col+c] != node->em || node->mp[lin][col+c] != node->em -32)
 		{
 			node->hm[lin][col + c] = v;
 		}
@@ -162,7 +206,7 @@ void	heat_up(t_fil *node, int lin, int col)
 	l = 1;
 	while(v > 1 && lin - l > 0)
 	{
-		if (node->mp[lin - l][col] == '.')//(node->mp[lin - l][col] != node->me || node->mp[lin - l][col] != node->me - 32 ||	node->mp[lin - l][col] != node->em || node->mp[lin - l][col] != node->em -32)
+		if (node->mp[lin - l][col] == '.' && node->hm[lin-l][col] < v)//(node->mp[lin - l][col] != node->me || node->mp[lin - l][col] != node->me - 32 ||	node->mp[lin - l][col] != node->em || node->mp[lin - l][col] != node->em -32)
 		{
 			node->hm[lin - l][col] = v;
 			// ft_putendl_fd("THE ENEMY", 2);
@@ -180,7 +224,7 @@ void	heat_down(t_fil *node, int lin, int col)
 	l = 1;
 	while(v > 1 && lin + l < node->mlin)
 	{
-		if (node->mp[lin + l][col] == '.')//(node->mp[lin +l][col] != node->me || node->mp[lin+l][col] != node->me - 32 || node->mp[lin+l][col] != node->em || node->mp[lin+l][col] != node->em -32)
+		if (node->mp[lin + l][col] == '.' && node->hm[lin+l][col] < v)//(node->mp[lin +l][col] != node->me || node->mp[lin+l][col] != node->me - 32 || node->mp[lin+l][col] != node->em || node->mp[lin+l][col] != node->em -32)
 		{
 			node->hm[lin + l][col] = v;
 		}
@@ -241,6 +285,40 @@ void	find_em_me(t_fil *node)
 	}
 }
 
+void	diagonal(t_fil *node)
+{
+	int e;
+	int i;
+	e = start_row(node);
+	i = start_col(node);
+	if (e < start_emlin(node))
+	{
+		while (e < node->mlin && i < node->mcol)
+		{
+			node->hm[e][i] = 5;
+			e++;
+			i++;
+		}
+	}
+}
+
+void	clear_map(t_fil *node)
+{
+	int e;
+	int i;
+	e = 0;
+	while (e < node->mlin)
+	{
+		i = 0;
+		while (i < node->mcol)
+		{
+			node->hm[e][i] = 2;
+			i++;
+		}
+		e++;
+	}
+}
+
 void	heatmap(t_fil *node)
 {
 	int e;
@@ -256,9 +334,11 @@ void	heatmap(t_fil *node)
 		}
 	}
 	get_symbol(node);
+	clear_map(node);
+	diagonal(node);
 	// get_heat(node);
 	// do_heat_map(node);
-	// divide_map(node);
+	divide_map(node);
 	find_em_me(node);
 	// divide_map(node);
 }
