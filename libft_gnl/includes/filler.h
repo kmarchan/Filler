@@ -73,7 +73,7 @@ int				start_col(t_fil *node);
 int				find_stars(t_fil *node);
 void			temp_map(t_fil *node);
 void			divide_map(t_fil *node);
-void			find_empty(t_fil *node);
+void			find_emi_me(t_fil *node);
 void			get_symbol(t_fil *node);
 void			read_player(t_fil *node);
 void			heatmap(t_fil *node);

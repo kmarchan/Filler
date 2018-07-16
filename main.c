@@ -24,25 +24,25 @@ void    placementoutput(int y, int x)
     free(ret);
 }
 
-//void	printmap(t_fil *node)
-//{
-//	int lin = 0;
-//	while (lin < node->mlin)
-//	{
-//		ft_putchar_fd('{', 2);
-//		int col = 0;
-//		while (col < node->mcol)
-//		{
-///			ft_putnbr_fd(node->hm[lin][col], 2);
-//			ft_putchar_fd(' ', 2);
-//			col++;
-//		}
-//		ft_putchar_fd('}', 2);
-//		lin++;
-//		ft_putchar_fd('\n', 2);
-//	}
-//	ft_putchar_fd('\n', 2);
-//}
+void	printmap(t_fil *node)
+{
+	int lin = 0;
+	while (lin < node->mlin)
+	{
+		ft_putchar_fd('{', 2);
+		int col = 0;
+		while (col < node->mcol)
+		{
+			ft_putnbr_fd(node->hm[lin][col], 2);
+			// ft_putchar_fd(' ', 2);
+			col++;
+		}
+		ft_putchar_fd('}', 2);
+		lin++;
+		ft_putchar_fd('\n', 2);
+	}
+	ft_putchar_fd('\n', 2);
+}
 
 int		main()
 {
@@ -55,7 +55,7 @@ int		main()
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->mlin = 0;
 	node->mcol = 0;
-	node->fd = 0;// open("map_o2.txt", O_RDONLY);
+	node->fd = 0;//open("file.txt", O_RDONLY);
 	
 	read_player(node);
 //	ft_putnbr_fd(node->player, 2);
@@ -71,7 +71,7 @@ int		main()
 	{
 //		 ft_putendl_fd("B", 2);
 		heatmap(node);
-		// printmap(node);
+		 printmap(node);
 //		 ft_putendl_fd("C", 2);
 		check_map(node);
 //		 ft_putendl_fd("D", 2);
