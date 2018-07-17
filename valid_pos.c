@@ -38,7 +38,7 @@ int		find_stars(t_fil *node)
 	return (stars);
 }
 
-int check_locat(t_fil *node, int lin, int col)
+typedef struct s_l
 {
 	int l;
 	int c;
@@ -47,39 +47,58 @@ int check_locat(t_fil *node, int lin, int col)
 	int maxstar;
 	int ovrl;
 	int ovrc;
+}				t_l;
 
-	ovrl = lst_star_lin(node);
-	ovrc = lst_star_col(node);
-	maxstar = find_stars(node);
-	l = 0;
-	ovr = 0;
-	count = 0;
-	while (l < node->plin && lin + node->plin < node->mlin + ovrl)
+void set_values(t_l *val, t_fil *node)
+{
+	val->ovrl = lst_star_lin(node);
+	val->ovrc = lst_star_col(node);
+	val->maxstar = find_stars(node);
+	val->l = 0;
+	val->ovr = 0;
+	val->count = 0;
+}
+
+int check_locat(t_fil *node, int lin, int col)
+{
+	// int l;
+	// int c;
+	// int count;
+	// int ovr;
+	// int maxstar;
+	// int ovrl;
+	// int ovrc;
+
+	// ovrl = lst_star_lin(node);
+	// ovrc = lst_star_col(node);
+	// maxstar = find_stars(node);
+	// l = 0;
+	// ovr = 0;
+	// count = 0;
+	t_l val;
+	set_values(&val, node);
+	while (val.l < node->plin && lin + node->plin < node->mlin + val.ovrl)
 	{
-		c = 0;
-		while (c < node->pcol && col + node->pcol < node->mcol + ovrc)
+		val.c = 0;
+		while (val.c < node->pcol && col + node->pcol < node->mcol + val.ovrc)
 		{
-			if (node->pp[l][c] == '*')
+			if (node->pp[val.l][val.c] == '*')
 			{
-				if ((node->mp[lin + l][col + c] == node->em ||
-				node->mp[lin + l][col + c] == node->em - 32))
-				{
+				if ((node->mp[lin + val.l][col + val.c] == node->em ||
+				node->mp[lin + val.l][col + val.c] == node->em - 32))
 					return (0);
-				}
-				if ((node->mp[lin + l][col + c] == node->me ||
-				node->mp[lin +l][col + c] == node->me -32))
-					ovr++;
-				if ((lin + l < node->mlin && lin + l >= 0) &&
-				col + c < node->mcol && col + c >= 0)
-					count++;
+				if ((node->mp[lin + val.l][col + val.c] == node->me ||
+				node->mp[lin +val.l][col + val.c] == node->me -32))
+					val.ovr++;
+				if ((lin + val.l < node->mlin && lin + val.l >= 0) &&
+				col + val.c < node->mcol && col + val.c >= 0)
+					val.count++;
 			}
-			c++;
+			val.c++;
 		}
-		l++;
+		val.l++;
 	}
-	if (count != maxstar || ovr != 1)
-		return (0);
-	return (1);
+	return (((val.count != val.maxstar || val.ovr != 1) ) ? 0: 1);
 }
 
 int scorecheck(t_fil *node, int lin, int col)
@@ -108,6 +127,7 @@ void	set_coordinate(t_fil *node, int lin, int col)
 {
 	node->ret_col = col;
 	node->ret_lin = lin;
+	// node->score = 0;
 }
 
 // void	is_valid(t_fil *node, int e, int i)
@@ -136,17 +156,10 @@ void	check_map(t_fil *node)
 {
 	int lin;
 	int col;
-	int x;
-	int y;
 	int tscore;
-	int	score;
 
-	node->score = 0;
 	lin = 0 - fst_star_lin(node);
 	tscore = 0;
-	score = 0;
-	x = 0;
-	y = 0;
 	while (lin < node->mlin)
 	{
 		col = 0 - fst_star_col(node);
@@ -155,21 +168,15 @@ void	check_map(t_fil *node)
 			if (col >= node->mcol)
 				break;
 			{
-				// is_valid(node, lin, col);
-				if (check_locat(node, lin, col) == 1)
-					tscore = scorecheck(node, lin, col);
-				if (tscore > score)
+				(check_locat(node, lin, col) == 1) && (tscore = scorecheck(node, lin, col));
+				if (tscore > node->score)
 				{
-					y = lin;
-					x = col;
-					score = tscore;
+					set_coordinate(node, lin, col);
+					node->score = tscore;
 				}
 			}
 			col++;
 		}
 		lin++;
 	}
-	// if (score == 0)
-	// 	node->valid = 0;
-	set_coordinate(node, y, x);
 }

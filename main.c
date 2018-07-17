@@ -48,14 +48,13 @@ int		main()
 	t_fil	*node;
 	int l = 0;
 	int m = 0;
+
 	(void)l;
 	(void)m;
-
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->mlin = 0;
 	node->mcol = 0;
 	node->fd = 0;
-	
 	read_player(node);
 	mapsize(node);
   	map(node);
@@ -64,7 +63,7 @@ int		main()
 	while (1)
 	{
 		heatmap(node);
-		 // printmap(node);
+		 printmap(node);
 		check_map(node);
 		placementoutput(node->ret_lin, node->ret_col);
 		free(node->pp);

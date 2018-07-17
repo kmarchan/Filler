@@ -12,7 +12,6 @@
 
 #include "filler.h"
 #include "libft.h"
-#include <stdio.h>
 
 // int		start_emcol(t_fil *node)
 // {
@@ -226,36 +225,45 @@ void	find_em_me(t_fil *node)
 	}
 }
 
+// void	straight_up(t_fil *node)
+// {
+// 	int e;
+// 	int i;
+// 	if (node->mlin == 15)
+// 	{
+		
+// 		e = 0;
+// 		i = 14;
+// 	}
+// 	if (node->mlin == 24)
+// 	{
+// 		e = 0;
+// 		i = 27;
+// 	}
+// 	while (e < node->mlin)
+// 	{
+// 				node->hm[e][i] = 10;
+// 		e++;
+// 	}
+// }
+
 void	diagonal(t_fil *node)
 {
 	int e;
 	int i;
-	// if (node->player == 1)
-	// {
-		if (node->mlin == 15)
-		{
-			e = 8;
-			i = 2;
-		}
-		if (node->mlin == 24)
-		{
-			e = 3;
-			i = 3;
-		}
-		if (node->mlin == 100)
-		{
-			e = 29;
-			i = 30;
-		}
-		// e = start_row(node);
-		// i = start_col(node);
+	if (node->mlin < 100 && node->player == 2)
+		straight_up(node);
+	if (node->mlin == 100)
+	{
+		e = 29;
+		i = 30;
 		while (e < node->mlin && i < node->mcol)
 		{
 			node->hm[e][i] = 5;
 			e++;
 			i++;
 		}
-	// }
+	}
 }
 
 void	clear_map(t_fil *node)
@@ -291,7 +299,10 @@ void	heatmap(t_fil *node)
 	}
 	get_symbol(node);
 	clear_map(node);
+	// if (node->mlin > 20)
 	diagonal(node);
-	// divide_map(node);
+	// else
+		// divide_map(node);
 	find_em_me(node);
+	// diagonal(node);
 }
