@@ -76,9 +76,6 @@ int		lst_star_lin(t_fil *node)
 		{
 			if (node->pp[pl][pc] == '*')
 			{
-//				ft_putchar_fd('l', 2);
-//				ft_putnbr_fd(pl, 2);
-//				ft_putchar_fd('\n', 2);
 				if(l < pl)
 					l = pl;
 			}
@@ -112,8 +109,5 @@ int		lst_star_col(t_fil *node)
 		}	
 		pl++;
 	}
-//	ft_putchar_fd('c', 2);
-//	ft_putnbr_fd(c, 2);
-//	ft_putchar_fd('\n', 2);
 	return (node->pcol - c);
 }
