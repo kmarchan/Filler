@@ -34,7 +34,6 @@ void	printmap(t_fil *node)
 		while (col < node->mcol)
 		{
 			ft_putnbr_fd(node->hm[lin][col], 2);
-			// ft_putchar_fd(' ', 2);
 			col++;
 		}
 		ft_putchar_fd('}', 2);
@@ -55,45 +54,23 @@ int		main()
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->mlin = 0;
 	node->mcol = 0;
-	node->fd = 0;//open("file.txt", O_RDONLY);
+	node->fd = 0;
 	
 	read_player(node);
-//	ft_putnbr_fd(node->player, 2);
 	mapsize(node);
   	map(node);
-	if (strstr(node->mp[0], "."))
-		m = 1;
-// printmap(node);
-//	 ft_putendl_fd("A", 2);
 	piece(node);
 	node->valid = 1;
 	while (1)
 	{
-//		 ft_putendl_fd("B", 2);
 		heatmap(node);
 		 // printmap(node);
-//		 ft_putendl_fd("C", 2);
 		check_map(node);
-//		 ft_putendl_fd("D", 2);
-		// if (node->valid == 0)
-			// break ;
-//		 ft_putendl_fd("E", 2);
 		placementoutput(node->ret_lin, node->ret_col);
-//		 ft_putendl_fd("F", 2);
 		free(node->pp);
 		node->score = 0;
-//		 ft_putendl_fd("G", 2);
 		update_map(node);
-		// printmap(node);
-//		 ft_putendl_fd("H", 2);
-		//piecesize(node);
 		piece(node);
-		
-		//ft_putnbr_fd(node->plin, 2);
-//		ft_putchar_fd('X', 2);
-		//ft_putnbr_fd(node->pcol, 2);
-//		ft_putchar_fd('n', 2);
 	}
 	return (0);
-}	
-
+}

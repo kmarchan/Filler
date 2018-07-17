@@ -12,8 +12,6 @@
 
 #include "filler.h"
 
-#include <stdio.h>
-
 int		find_stars(t_fil *node)
 {
 	int i;
@@ -112,6 +110,28 @@ void	set_coordinate(t_fil *node, int lin, int col)
 	node->ret_lin = lin;
 }
 
+// void	is_valid(t_fil *node, int e, int i)
+// {
+// 	int x;
+// 	int y;
+// 	int tscore;
+// 	int	score;
+
+// 	tscore = 0;
+// 	score = 0;
+// 	x = 0;
+// 	y = 0;
+// 	if (check_locat(node, e, i) == 1)
+// 		tscore = scorecheck(node, e, i);
+// 	if (tscore > score)
+// 	{
+// 		y = e;
+// 		x = i;
+// 		score = tscore;
+// 	}
+// 	set_coordinate(node, y, x);
+// }
+
 void	check_map(t_fil *node)
 {
 	int lin;
@@ -125,16 +145,8 @@ void	check_map(t_fil *node)
 	lin = 0 - fst_star_lin(node);
 	tscore = 0;
 	score = 0;
-	tscore = 0;
 	x = 0;
 	y = 0;
-//	int sl = lst_star_lin(node);
-//	int sc = lst_star_col(node);
-//	ft_putchar_fd('{', 2);
-//	ft_putnbr_fd(sl, 2);
-//	ft_putchar_fd(' ', 2);
-//	ft_putnbr_fd(sc, 2);
-//	ft_putchar_fd('}', 2);
 	while (lin < node->mlin)
 	{
 		col = 0 - fst_star_col(node);
@@ -143,6 +155,7 @@ void	check_map(t_fil *node)
 			if (col >= node->mcol)
 				break;
 			{
+				// is_valid(node, lin, col);
 				if (check_locat(node, lin, col) == 1)
 					tscore = scorecheck(node, lin, col);
 				if (tscore > score)
@@ -156,7 +169,7 @@ void	check_map(t_fil *node)
 		}
 		lin++;
 	}
-	if (score == 0)
-		node->valid = 0;
+	// if (score == 0)
+	// 	node->valid = 0;
 	set_coordinate(node, y, x);
 }

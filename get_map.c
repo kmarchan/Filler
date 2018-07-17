@@ -14,32 +14,6 @@
 #include "libft.h"
 #include <stdio.h>
 
-// int		get_line(int fd, char **line)
-// {
-// 	int		byter;
-// 	char	*buff;
-// 	char	*ret;
-// 	int		i;
-
-// 	buff = (char*)ft_memalloc(sizeof(char) * 1);
-// 	ret = (char*)ft_memalloc(sizeof(char) * 200);
-// 	ft_strclr(ret);
-// 	while ((byter = read(fd, buff, 1)) > 0)
-// 	{
-// 		ft_strcat(ret, buff);
-// 		if (ft_strchr(buff, '\n'))
-// 		{
-// 			break ;
-// 		}
-// 	}
-// 	i = ft_strlen(ret);
-// 	ret[i - 1] = '\0';
-// 	// ft_putchar_fd('\n', 2);
-// 	*line = ft_strdup(ret);
-// 	// ft_putstr_fd(ret, 2);
-// 	return (byter);
-// }
-
 void	**mapsize(t_fil *node)
 {
 	int		ret;
@@ -83,14 +57,14 @@ void	bzero_array(char **ar, int n)
 
 void	update_map(t_fil *node)
 {
-	int line;
-	line = 0;
-	char **temp;
+	int	line;
 	int	ret;
-	char *read;
+	char	*read;
+	char	**temp;
+	
+	line = 0;
 	(void)ret;
 	(void)temp;
-
 	ret = get_next_line(node->fd, &read);
 	while (ft_strstr(read, "012345") == NULL && ret != 0)
 	{
@@ -110,8 +84,8 @@ void	update_map(t_fil *node)
 
 void	map(t_fil *node)
 {
-	int		ret;
-	int		line;
+	int	ret;
+	int	line;
 	char	**temp;
 	char	*read;
 

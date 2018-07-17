@@ -20,7 +20,7 @@ LIB:
 INCLUDES= -I ./libft_gnl/includes
 
 SRC=	get_player.c get_map.c get_piece.c heatmap.c valid_pos.c \
-	   	get_symbol.c main.c find_stars.c
+	   	get_symbol.c main.c find_stars.c find_start.c set_heat.c \
 
 OBJ= $(SRC:.c=.o)
 

@@ -45,40 +45,6 @@ void	set_coordinate(t_fil *node, int lin, int col)
 	node->ret_lin = lin;
 }
 
-//int		check_token_point(t_fil *node, int lin, int col)
-//{
-//	int	count;
-//	int tc;
-//	int tl;
-//
-//	count = 0;
-//	tc = node->ret_col;
-//	tl = node->ret_lin;
-//	if (node->pp[lin][col] == '*' && (tl + lin >= 0 && tc + col >= 0) &&
-//			(tl = lin < node->mlin && tc + col < node->mcol))
-//		count++;
-//	return (count);
-//}
-
-void    temp_map(t_fil *node)
-{
-    int     line;
-
-//    if (!node->tm)
-  //  {
-	//	malloc_temp(node->tm, node);
-	//	ft_putchar_fd('2', 2);
-   // }
-	if (!node->tm)
-		line = 0;
-	while (line < node->mlin)
-	{
-        	ft_strcpy(node->tm[line], node->mp[line]);
-	//		ft_putchar_fd('2', 2);
-        	line++;
-	}
-}
-
 int		fst_star_lin(t_fil *node)
 {
 	int pc;
@@ -188,14 +154,6 @@ int		valid_pos(t_fil *node)
 	count = star_count(node, node->tm);	
 	p = find_stars(node);
 	em = count_em(node, node->mp);
-//	printf("map= %d, piece=%d\n", m, p);
-//	printf("count= %d, target=%d\n", count, m + p - 1);
-//	ft_putstr_fd("count", 2);
-//	ft_putnbr_fd(count, 2);
-//	ft_putchar_fd(' ', 2);
-//	ft_putstr_fd("target", 2);
-//	ft_putnbr_fd(m + p - 1, 2);
-//	ft_putchar_fd('\n', 2);
 	if ((count == m + p - 1) && (em == count_em(node, node->tm)))
 		return (1);
 	else 
@@ -220,83 +178,20 @@ int		score(t_fil *node)
 			node->tm[lin][col] == node->me - 32)
 			{
 				score = score+node->hm[lin][col];
-			//	printf("isetscore= %d\n", score);
 			}	
-		//	printf("hm %d\n", node->hm[lin][col]);
-		//	printf("col=%d\n", col);
 			col++;
 		}
-//		printf("lin =%d\n", lin);
 		lin++;
 	}
 	if (score > node->score)
 	{
 		node->score = score;
-//		printf("score= %d\n", score);
 		return (1);
 	}
 	else 
 		return (0);
 }
-/*
-int		place_pos(t_fil *node, int col, int lin)
-{
-	int pc;
-	int pl;
-	int h;
-	int s;
 
-	s = find_stars(node);
-	pl = 0;//fst_star_lin(node);
-	pc = 0;//fst_star_col(node);
-	h = col;
-	(void)h;
-//	temp_map(node);
-//	printf("placelin%d\n", lin);
-//	printf("placecol%d\n", col);
-//	printf("test 6\n");
-	while(s--)
-	{
-		while (pl < node->plin && lin < node->mlin - (node->plin - pl))
-		{
-			pc = 0; 
-			col = h;
-			while (pc < node->pcol && col < node->mcol - (node->pcol - pc))
-			{
-				// ft_putstr_fd("pos3\n", 2);
-				if (!node->tm)
-				{
-					temp_map(node);
-				}
-				if (node->pp[pl][pc] == '*' && node->tm)
-				{
-				//	printf("m%d:%d\np%d:%d\n", lin, col, pl, pc);
-					node->tm[lin][col] = node->me;
-					// ft_putstr_fd("pos4\n", 2);
-				}
-				pc++;
-				col++;	
-			}
-			pl++;
-			lin++;
-		}
-	}
-	int i = 0;
-	int l = 0;
-	while (l <  node->mlin)
-	{
-		i = 0;
-		while (i < node->mcol)
-		{
-		        ft_putchar_fd(node->tm[l][i], 2);
-		        i++;
-		}
-		ft_putchar_fd('\n', 2);
-		l++;
-	}	
-	return (0);
-}
-*/
 int		find_valid(t_fil *node)
 {
 	int col;
@@ -309,18 +204,10 @@ int		find_valid(t_fil *node)
 		col = 0;
 		while(col < node->mcol)
 		{
-//			printf("findcol%d\n", col);
-			// ft_putchar_fd('H', 2);
-	//		place_pos(node, col, lin);
-			// ft_putchar_fd('h', 2);
 			if (valid_pos(node) == 1)
 			{
-				// ft_putchar_fd('I', 2);
-//				printf("test 4\n");
 				if(score(node))
 				{
-					ft_putchar_fd('J', 2);
-//					printf("test 5\n");
 					set_coordinate(node, lin -1, col); 
 					node->score = score(node);
 				}
