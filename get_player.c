@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 07:09:52 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/07 13:58:10 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/19 17:06:48 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "get_next_line.h"
 #include "filler.h"
 
-void	ft_arrpop(int w, char **ret, char *str, char c)
+void		ft_arrpop(int w, char **ret, char *str, char c)
 {
 	int		i;
 	int		len;
@@ -36,7 +36,7 @@ void	ft_arrpop(int w, char **ret, char *str, char c)
 	ret[w][i] = '\0';
 }
 
-char	**ft_strspliter(char *str, char c)
+char		**ft_strspliter(char *str, char c)
 {
 	int		words;
 	int		i;
@@ -84,4 +84,3 @@ void		read_player(t_fil *node)
 			node->player = 1;
 	}
 }
-

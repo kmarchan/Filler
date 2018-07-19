@@ -6,14 +6,14 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 13:46:58 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/09 06:40:21 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/19 17:05:09 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <stdio.h>
 
-void	**piecesize(t_fil *node)
+void	piecesize(t_fil *node)
 {
 	int		ret;
 	char	**ptr2;
@@ -31,7 +31,6 @@ void	**piecesize(t_fil *node)
 	ptr2 = ft_strspliter(piece, ' ');
 	node->plin = (ft_atoi(ptr2[1]));
 	node->pcol = (ft_atoi(ptr2[2]));
-	return(0);
 }
 
 void	piece(t_fil *node)
@@ -52,4 +51,3 @@ void	piece(t_fil *node)
 		ft_strdel(&read);
 	}
 }
-

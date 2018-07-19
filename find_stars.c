@@ -22,14 +22,14 @@ int		fst_star_lin(t_fil *node)
 	while (pl < node->plin)
 	{
 		pc = 0;
-		while(pc < node->pcol)
+		while (pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 			{
 				return (pl);
 			}
 			pc++;
-		}	
+		}
 		pl++;
 	}
 	return (pl);
@@ -47,15 +47,13 @@ int		fst_star_col(t_fil *node)
 	while (pl < node->plin)
 	{
 		pc = 0;
-		while(pc < node->pcol)
+		while (pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 				if (c > pc)
-				{
 					c = pc;
-				}					
 			pc++;
-		}	
+		}
 		pl++;
 	}
 	return (c);
@@ -72,15 +70,15 @@ int		lst_star_lin(t_fil *node)
 	while (pl < node->plin)
 	{
 		pc = 0;
-		while(pc < node->pcol)
+		while (pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 			{
-				if(l < pl)
+				if (l < pl)
 					l = pl;
 			}
 			pc++;
-		}	
+		}
 		pl++;
 	}
 	return (node->plin - l);
@@ -98,16 +96,39 @@ int		lst_star_col(t_fil *node)
 	while (pl < node->plin)
 	{
 		pc = 0;
-		while(pc < node->pcol)
+		while (pc < node->pcol)
 		{
 			if (node->pp[pl][pc] == '*')
 				if (c < pc)
-				{
 					c = pc;
-				}					
 			pc++;
-		}	
+		}
 		pl++;
 	}
 	return (node->pcol - c);
+}
+
+int		find_stars(t_fil *node)
+{
+	int i;
+	int l;
+	int stars;
+
+	stars = 0;
+	i = 0;
+	l = 0;
+	while (l < node->plin)
+	{
+		i = 0;
+		while (i <= node->pcol)
+		{
+			if (node->pp[l][i] == '*')
+			{
+				stars++;
+			}
+			i++;
+		}
+		l++;
+	}
+	return (stars);
 }
