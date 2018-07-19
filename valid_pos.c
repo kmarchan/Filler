@@ -96,11 +96,14 @@ void	check_map(t_fil *node)
 			if (col >= node->mcol)
 				break ;
 			{
-				(check_locat(node, lin, col)) &&
-				(tscore = scorecheck(node, lin, col));
+				if (check_locat(node, lin, col))
+					tscore = scorecheck(node, lin, col);
+				// ((check_locat(node, lin, col) && tscore = scorecheck(node, lin, col))
 				if (tscore > node->score)
 				{
-					(set_coordinate(node, lin, col) && (node->score = tscore));
+					// (set_coordinate(node, lin, col) && (node->score = tscore));
+					if (set_coordinate(node, lin, col))
+						(node->score = tscore);
 				}
 			}
 			col++;

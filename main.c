@@ -70,30 +70,42 @@ void	my_printmap(t_fil *node)
 		{
 			if (node->mp[lin][col] == node->em)
 			{
-				char *x = "\x1B[31mX"; 
-				write(2, &x, 1);
+				//char *x = "\x1B[31mX"; 
+				//write(2, &x, 1);
+				ft_putstr_fd(RED, 2);
+				ft_putchar_fd('X', 2);
 			}
 			else if (node->mp[lin][col] == node->em - 32)
 			{
 				// fprintf(stderr, MAG "%c", node->mp[lin][col]);
-				write(2, MAG "X", 1);
+				ft_putstr_fd(MAG, 2);
+				ft_putchar_fd('X', 2);
+				//write(2, MAG "X", 1);
 			}
 			else if (node->mp[lin][col] == node->me)//|| node->mp[lin][col] == node->me - 32)
 			{
-				write(2, BLU "X", 1);
+				//write(2, BLU "X", 1);
 				// fprintf(stderr, GRN "%c", node->mp[lin][col]);
+				ft_putstr_fd(BLU, 2);
+				ft_putchar_fd('X', 2);
 			}
 			else if  (node->mp[lin][col] == node->me - 32)
 			{
-				write(2, "X", 1);
+				// write(2, "X", 1);
 				// fprintf(stderr, CYN "%c", node->mp[lin][col]);
+				ft_putstr_fd(CYN, 2);
+				ft_putchar_fd('X', 2);
 			}
 			else
-				write(2, WHT "X", 1);
+			{
+				//write(2, WHT "X", 1);
+				ft_putstr_fd(RESET, 2);
+				ft_putchar_fd('.', 2);
+			}
 			col++;
 		}
 		lin++;
-		write(2, "\n", 1);
+		ft_putchar_fd('\n', 2);
 		// fprintf(stderr, "\n");
 	}
 	ft_putchar_fd('\n', 2);
@@ -118,6 +130,8 @@ int		main(void)
 
 	l = 0;
 	m = 0;
+	(void)l;
+	(void)m;
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->mlin = 0;
 	node->mcol = 0;
