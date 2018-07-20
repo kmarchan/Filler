@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_start.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/20 08:37:30 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/07/20 08:37:35 by kmarchan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 #include "libft.h"
 
@@ -91,45 +103,4 @@ int		start_row(t_fil *node)
 		e++;
 	}
 	return (e);
-}
-
-void	straight_up(t_fil *node)
-{
-	int e;
-	int i;
-	if (node->mlin == 15)
-	{
-		
-		e = 0;
-		i = 14;
-	}
-	if (node->mlin == 24)
-	{
-		e = 0;
-		i = 27;
-	}
-	while (e < node->mlin)
-	{
-				node->hm[e][i] = 10;
-		e++;
-	}
-}
-
-void	divide_map(t_fil *node, int e, int i)
-{
-	int l;
-	int c;
-
-	l = 0;
-	while (l < node->mlin)
-	{
-		c = 0;
-		while (node->mp[l][c] != '\0')
-		{
-			if (/*l == e ||*/ c == 14)// && node->hm[l][c] != 1)
-				node->hm[e][i] = 10;
-			c++;
-		}
-		l++;
-	}
 }

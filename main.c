@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 13:56:21 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/10 06:23:42 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/20 07:30:01 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	placementoutput(int y, int x)
 	ret = ft_strjoin(ft_itoa(y), " ");
 	ft_strcat(ret, ft_itoa(x));
 	ft_putendl_fd(ret, 1);
-	// ft_putendl_fd(ret, 2);
 	free(ret);
 }
 
@@ -42,20 +41,17 @@ void	printmap(t_fil *node)
 	lin = 0;
 	while (lin < node->mlin)
 	{
-		// ft_putchar_fd('{', 2);
 		col = 0;
 		while (col < node->mcol)
 		{
 			ft_putnbr_fd(node->hm[lin][col], 2);
 			col++;
 		}
-		// ft_putchar_fd('}', 2);
 		lin++;
 		ft_putchar_fd('\n', 2);
 	}
 	ft_putchar_fd('\n', 2);
 }
-
 
 void	my_printmap(t_fil *node)
 {
@@ -66,50 +62,22 @@ void	my_printmap(t_fil *node)
 	while (lin < node->mlin)
 	{
 		col = 0;
-		while(col < node->mcol)
+		while (col < node->mcol)
 		{
-			if (node->mp[lin][col] == node->em)
-			{
-				//char *x = "\x1B[31mX"; 
-				//write(2, &x, 1);
-				ft_putstr_fd(RED, 2);
-				ft_putchar_fd('X', 2);
-			}
-			else if (node->mp[lin][col] == node->em - 32)
-			{
-				// fprintf(stderr, MAG "%c", node->mp[lin][col]);
-				ft_putstr_fd(MAG, 2);
-				ft_putchar_fd('X', 2);
-				//write(2, MAG "X", 1);
-			}
-			else if (node->mp[lin][col] == node->me)//|| node->mp[lin][col] == node->me - 32)
-			{
-				//write(2, BLU "X", 1);
-				// fprintf(stderr, GRN "%c", node->mp[lin][col]);
-				ft_putstr_fd(BLU, 2);
-				ft_putchar_fd('X', 2);
-			}
-			else if  (node->mp[lin][col] == node->me - 32)
-			{
-				// write(2, "X", 1);
-				// fprintf(stderr, CYN "%c", node->mp[lin][col]);
-				ft_putstr_fd(CYN, 2);
-				ft_putchar_fd('X', 2);
-			}
+			if (node->mp[lin][col] == node->em ||
+			node->mp[lin][col] == node->em - 32)
+				ft_putstr_fd(RED "X", 2);
+			else if (node->mp[lin][col] == node->me ||
+			node->mp[lin][col] == node->me - 32)
+				ft_putstr_fd(GRN "X", 2);
 			else
-			{
-				//write(2, WHT "X", 1);
-				ft_putstr_fd(RESET, 2);
-				ft_putchar_fd('.', 2);
-			}
+				ft_putstr_fd(RESET ".", 2);
 			col++;
 		}
 		lin++;
-		ft_putchar_fd('\n', 2);
-		// fprintf(stderr, "\n");
+		ft_putstr_fd(RESET "\n", 2);
 	}
 	ft_putchar_fd('\n', 2);
-
 }
 
 int		reset(t_fil *node)
@@ -130,8 +98,6 @@ int		main(void)
 
 	l = 0;
 	m = 0;
-	(void)l;
-	(void)m;
 	node = (t_fil*)ft_memalloc(sizeof(t_fil));
 	node->mlin = 0;
 	node->mcol = 0;

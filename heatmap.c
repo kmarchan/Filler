@@ -41,26 +41,6 @@ void	find_em_me(t_fil *node)
 	}
 }
 
-void	diagonal(t_fil *node)
-{
-	int e;
-	int i;
-
-	if (node->mlin < 100 && node->player == 2)
-		straight_up(node);
-	if (node->mlin == 100)
-	{
-		e = 29;
-		i = 30;
-		while (e < node->mlin && i < node->mcol)
-		{
-			node->hm[e][i] = 5;
-			e++;
-			i++;
-		}
-	}
-}
-
 void	clear_map(t_fil *node)
 {
 	int e;
@@ -76,6 +56,45 @@ void	clear_map(t_fil *node)
 			i++;
 		}
 		e++;
+	}
+}
+
+int		heat_diag(t_fil *node, int e, int i)
+{
+	while (e < node->mlin && i < node->mcol)
+	{
+		node->hm[e][i] = 5;
+		e++;
+		i++;
+	}
+	return (1);
+}
+
+void	diagonal(t_fil *node)
+{
+	int e;
+	int i;
+
+	if (node->mlin < 100 && node->player == 2)
+		divide_map(node);
+	else
+	{
+		if (node->mlin == 15)
+		{
+			e = 8;
+			i = 2;
+		}
+		if (node->mlin == 24)
+		{
+			e = 4;
+			i = 11;
+		}
+		if (node->mlin == 100)
+		{
+			e = 29;
+			i = 30;
+		}
+		heat_diag(node, e, i);
 	}
 }
 

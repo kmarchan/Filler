@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 07:08:28 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/19 14:30:22 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/20 07:55:41 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,11 @@ void	check_map(t_fil *node)
 			if (col >= node->mcol)
 				break ;
 			{
-				if (check_locat(node, lin, col))
-					tscore = scorecheck(node, lin, col);
-				// ((check_locat(node, lin, col) && tscore = scorecheck(node, lin, col))
+				(check_locat(node, lin, col) &&
+				(tscore = scorecheck(node, lin, col)));
 				if (tscore > node->score)
-				{
-					// (set_coordinate(node, lin, col) && (node->score = tscore));
-					if (set_coordinate(node, lin, col))
-						(node->score = tscore);
-				}
+					((set_coordinate(node, lin, col) &&
+					(node->score = tscore)));
 			}
 			col++;
 		}
