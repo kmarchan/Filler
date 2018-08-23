@@ -6,7 +6,7 @@
 /*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 13:56:21 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/07/20 07:30:01 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/07/21 13:26:54 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		reset(t_fil *node)
 	free(node->pp);
 	node->score = 0;
 	update_map(node);
-	my_printmap(node);
+//	my_printmap(node);
 	piece(node);
 	return (1);
 }
